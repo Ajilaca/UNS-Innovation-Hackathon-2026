@@ -1,0 +1,4 @@
+name: "Hari cerah, UMKM kecil"
+description: "Cuaca cerah, limbah encer-sedang. Kondisi demo terbaik."
+solar: {weather: cerah}
+wastewater: {cod_scale: 0.6}

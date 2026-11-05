@@ -1,0 +1,4 @@
+name: "Konduktivitas rendah"
+description: "EC rendah membuat tegangan sel tinggi dan arus terbatas; energi per m3 naik."
+solar: {weather: berawan}
+wastewater: {ec_mean: 1300, ec_sd: 250, ec_min: 700}

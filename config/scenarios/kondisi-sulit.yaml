@@ -1,0 +1,6 @@
+name: "Kondisi sulit"
+description: "Pewarna membandel, limbah pekat, cuaca berawan, sensor agak kotor. Menguji deteksi warna mentok dan peringatan."
+solar: {weather: berawan}
+wastewater: {cod_scale: 1.5}
+reactor: {recalcitrant_scale: 3.0}
+sensor: {bias_pct: 5, drift_per_batch: 0.004}

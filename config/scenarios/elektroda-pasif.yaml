@@ -1,0 +1,5 @@
+name: "Elektroda cepat pasif"
+description: "Lapisan pasif tumbuh cepat dan pembalikan polaritas jarang. Menguji deteksi resistansi sel."
+solar: {weather: cerah}
+reactor: {passivation_rate: 0.006}
+unit: {reverse_every_s: 3000}

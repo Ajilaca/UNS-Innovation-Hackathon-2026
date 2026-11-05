@@ -1,0 +1,4 @@
+name: "PLN saja (tanpa panel)"
+description: "Acuan biaya dan porsi EBT = 0%. Panel surya dan baterai dinolkan."
+grid: {policy: grid_only}
+unit: {pv_wp: 0, battery_wh: 0}

@@ -1,0 +1,12 @@
+.venv
+.git
+**/node_modules
+web/dist
+models
+data/*.json
+data/*.sqlite
+graphify-out
+.claude
+.taste-skill
+**/__pycache__
+**/.pytest_cache

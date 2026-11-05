@@ -1,0 +1,4 @@
+name: "Hibrida, hari mendung"
+description: "Surya kurang; PLN menambal setelah batas tunggu atau lebih awal bila prakiraan surya tidak cukup (mode AI)."
+solar: {weather: mendung}
+grid: {policy: solar_first}

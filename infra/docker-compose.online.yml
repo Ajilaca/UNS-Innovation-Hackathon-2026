@@ -1,0 +1,28 @@
+# Overlay online: HTTPS otomatis (Caddy + Let's Encrypt), subdomain gratis (DuckDNS), MQTT TLS 8883.
+services:
+  backend:
+    ports: !override []                 # hanya lewat Caddy
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on: [backend]
+    environment: { BJ_DOMAIN: "${BJ_DOMAIN:?isi BJ_DOMAIN, mis. batikjernih.duckdns.org}" }
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    ports: ["80:80", "443:443"]
+  duckdns:
+    image: lscr.io/linuxserver/duckdns:latest
+    restart: unless-stopped
+    environment:
+      SUBDOMAINS: ${DUCKDNS_SUBDOMAIN:?isi DUCKDNS_SUBDOMAIN (tanpa .duckdns.org)}
+      TOKEN: ${DUCKDNS_TOKEN:?isi DUCKDNS_TOKEN}
+  mosquitto:
+    ports: ["8883:8883"]
+    volumes:
+      - ./mosquitto/mosquitto.tls.conf:/mosquitto/config/conf.d/tls.conf:ro
+      - caddy-data:/certs:ro              # sertifikat Let's Encrypt milik Caddy dipakai ulang
+volumes:
+  caddy-data: {}
+  caddy-config: {}

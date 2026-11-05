@@ -1,0 +1,4 @@
+name: "Mendung, limbah pekat"
+description: "Daya surya rendah dan limbah pekat. Menguji penjadwalan energi dan jeda proses."
+solar: {weather: mendung}
+wastewater: {cod_scale: 2.2}

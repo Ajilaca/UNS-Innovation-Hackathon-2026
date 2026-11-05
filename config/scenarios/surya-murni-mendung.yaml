@@ -1,0 +1,4 @@
+name: "Surya murni, hari mendung"
+description: "Tanpa PLN. Pembanding: batch ditunda, dijeda, atau gagal saat daya surya tidak cukup."
+solar: {weather: mendung}
+grid: {policy: solar_only}

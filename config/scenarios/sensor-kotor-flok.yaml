@@ -1,0 +1,4 @@
+name: "Sensor kotor + flok bocor"
+description: "Lensa kotor (bias positif), flok banyak masuk ruang ukur. Risiko utama brief 18.1."
+solar: {weather: cerah}
+sensor: {bias_pct: 12, floc_leak: 0.7, bubble_prob: 0.08, drift_per_batch: 0.006}

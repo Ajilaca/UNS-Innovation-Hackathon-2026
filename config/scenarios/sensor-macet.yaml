@@ -1,0 +1,4 @@
+name: "Sensor optik macet"
+description: "Sensor warna macet di tengah proses. Kontroler harus berhenti lewat batas waktu/anomali, bukan menebak."
+solar: {weather: cerah}
+sensor: {stuck_after_s: 600}
