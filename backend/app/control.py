@@ -59,6 +59,7 @@ class BatchController:
         self.plateau_hits = 0
         self.plateau_ref: tuple[float, float] | None = None     # (q, mean ln colour) at the last checkpoint
         self.color0_est = None
+        self.color_end_est = None
         self.color_now = None
         self.eta_s = None
         self.flags: list[str] = []

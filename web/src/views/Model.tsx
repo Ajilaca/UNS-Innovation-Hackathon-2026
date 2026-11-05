@@ -33,7 +33,7 @@ export function Model() {
             { label: "Median muatan", value: num(m.q_obs_median), unit: "C/L", sub: `P90 ${num(m.q_obs_p90)} C/L` },
           ]} />{retrain}</section>
           <div className="grid g-2" style={{ alignItems: "stretch" }}>
-            <section className="card">
+            <section className="card model-fill">
               <div className="card-head"><h2 className="with-ic"><span className="ic square"><IconSensor /></span><span>Fitur yang paling berpengaruh<small>Bagian mana dari pembacaan sensor yang paling menentukan perkiraan.</small></span></h2></div>
               <div className="model-bars"><Bars hueIndex={0} rows={Object.entries(m.importance ?? {}).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({ label: FEAT[k] ?? k, value: v, text: `${num(100 * v)}%` }))} /></div>
             </section>

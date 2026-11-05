@@ -15,7 +15,10 @@ export function Batches() {
   const all = q.data?.batches ?? [];
   const rows = all.filter((b) => tab === "semua" || (tab === "lolos" && b.status === "LOLOS") || (tab === "gagal" && b.status.startsWith("GAGAL")) || (tab === "lain" && !b.status.startsWith("GAGAL") && b.status !== "LOLOS"));
   const count = (f: (b: Batch) => boolean) => all.filter(f).length;
-  const avg = (f: (b: Batch) => number) => (all.length ? all.reduce((a, b) => a + f(b), 0) / all.length : null);
+  const avg = (f: (b: Batch) => number | null | undefined) => { // skip batches that could not report the value (a device restart mid-batch)
+    const v = all.map(f).filter((x): x is number => x != null && Number.isFinite(x) && x > 0);
+    return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null;
+  };
   return (
     <>
       <h1 className="sr-only">Batch</h1>

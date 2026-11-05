@@ -126,7 +126,7 @@ export function Live() {
         <Metric icon={<IconDrop />} tone="green" label="Warna air (Pt-Co)" value={num(c)} foot={<>Target ≤ {num(target)} {c != null && (c <= target ? <Ok>Memenuhi</Ok> : <Warn>Di atas target</Warn>)}</>} />
         <Metric icon={<IconBolt />} tone="amber" label="Energi batch" value={num(t?.kwh, 3)} unit="kWh" foot={energy.total > 0 ? <Ok>{num(energy.pctPv + energy.pctBatt)}% terbarukan</Ok> : "Belum ada arus"} />
         <Metric icon={<IconDrop />} tone="green" label="pH" value={num(ph, 1)} foot={ph == null ? "–" : phOk ? <Ok>Dalam baku mutu 6–9</Ok> : <Warn>Di luar baku mutu 6–9</Warn>} />
-        <Metric icon={<IconFlame />} tone="red" label="Suhu" value={num(t?.temp_C, 1)} unit="°C" foot={t == null ? "–" : t.temp_C < 45 ? <Ok>Di bawah batas 45 °C</Ok> : <Warn>Mencapai batas 45 °C</Warn>} />
+        <Metric icon={<IconFlame />} tone="red" label="Suhu" value={num(t?.temp_C, 1)} unit="°C" foot={t == null ? "–" : t.temp_C < 45 ? <Ok>Di bawah 45 °C</Ok> : <Warn>Mencapai batas 45 °C</Warn>} />
         <Metric icon={<IconWave />} tone="green" label="Konduktivitas" value={num(t?.ec_uScm)} unit="µS/cm" foot={t == null ? "–" : t.ec_uScm >= 1500 ? <Ok>Hantaran cukup</Ok> : <Warn>Rendah, energi boros</Warn>} />
         <Metric icon={<IconLayers />} tone="green" label="Volume" value={num(t?.V_L, 0)} unit="L" foot="Batch saat ini" />
       </div>

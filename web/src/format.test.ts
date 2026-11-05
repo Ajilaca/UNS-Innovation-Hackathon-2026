@@ -14,9 +14,9 @@ describe("format (id-ID)", () => {
     expect(signed(4)).toBe("+4");
   });
   it("durations", () => {
-    expect(dur(45)).toBe("45 d");
-    expect(dur(600)).toBe("10 m");
-    expect(dur(3900)).toBe("1 j 05 m");
+    expect(dur(45)).toBe("45 detik");
+    expect(dur(600)).toBe("10 menit");
+    expect(dur(3900)).toBe("1 jam 05 menit");
     expect(dur(null)).toBe("–");
   });
   it("labels and tones", () => {

@@ -1,4 +1,4 @@
-# Kontrak data SEBAT (v1, draf untuk disetujui tim)
+# Kontrak data SEBAT (v1.1, draf untuk disetujui tim)
 
 Semua yang menghasilkan telemetri (firmware ESP32 **dan** simulator) harus mengirim persis bentuk ini. Backend dan frontend tidak boleh peduli sumbernya. Ubah file ini hanya atas kesepakatan tim dan naikkan versinya; firmware, simulator, dan backend diperbarui bersamaan.
 
@@ -44,10 +44,12 @@ Berisi: `batch_id, unit_id, site_id, source, mode, ts_start, ts_end, V_L, status
 
 Field opsional: `q_pred_raw` (prediksi sebelum koreksi per unit), `calib_factor`, `scenario` (hanya simulasi).
 
-`status`: `LOLOS`, `GAGAL_WARNA`, `GAGAL_WARNA_MENTOK`, `GAGAL_WAKTU`, `GAGAL_SENSOR`, `GAGAL_TANPA_DAYA`, `GAGAL_PENGAMAN_SUHU`, `SELESAI_TANPA_VERIFIKASI`.
+`status`: `LOLOS`, `GAGAL_WARNA`, `GAGAL_WARNA_MENTOK`, `GAGAL_WAKTU`, `GAGAL_SENSOR`, `GAGAL_TANPA_DAYA`, `GAGAL_PENGAMAN_SUHU`, `SELESAI_TANPA_VERIFIKASI`. Khusus perangkat (v1.1): `GAGAL_PENGAMAN_LISTRIK` (tegangan atau arus lebih, arus tak terbaca, arus tak mengalir), `GAGAL_LEVEL` (tangki tak terisi atau elektroda tak terendam).
 
 Blok `truth` (warna, COD, dan jenis pewarna sebenarnya) **hanya boleh ada bila `source = "simulator"`**. Backend membuangnya dari data berasal `device`.
 
 ## Aturan perubahan
 
 Perubahan field = naikkan versi di judul + catat di commit. Menambah field opsional tidak memutus kompatibilitas; mengubah satuan atau menghapus field wajib memutusnya.
+
+Riwayat: v1.1 menambah dua status khusus perangkat dan ringkasan batch terputus (`status` `GAGAL_TANPA_DAYA`, flag `RESTART_TENGAH_BATCH`, tanpa rincian energi per sumber karena pembukuannya hilang saat perangkat mati). Perkiraan `electrode_g` dan `sludge_kg` dari perangkat dihitung dengan hukum Faraday dari muatan terukur, belum ditimbang, dan lumpurnya belum menghitung TSS limbah.

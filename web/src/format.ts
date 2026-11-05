@@ -12,9 +12,9 @@ export function dur(sec: number | null | undefined): string {
   if (sec == null || !Number.isFinite(sec)) return DASH;
   const s = Math.max(0, Math.round(sec));
   const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60);
-  if (h > 0) return `${h} j ${String(m).padStart(2, "0")} m`;
-  if (m > 0) return `${m} m`;
-  return `${s} d`;
+  if (h > 0) return `${h} jam ${String(m).padStart(2, "0")} menit`;
+  if (m > 0) return `${m} menit`;
+  return `${s} detik`;
 }
 
 const WIB = new Intl.DateTimeFormat("id-ID", { timeZone: "Asia/Jakarta", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit", hour12: false });
@@ -28,7 +28,7 @@ export const STATE_LABEL: Record<string, string> = {
 };
 export const STATUS_LABEL: Record<string, string> = {
   LOLOS: "Lolos", GAGAL_WARNA: "Gagal warna", GAGAL_WARNA_MENTOK: "Gagal: warna mentok", GAGAL_WAKTU: "Gagal: batas waktu", GAGAL_SENSOR: "Gagal: sensor",
-  GAGAL_TANPA_DAYA: "Gagal: tanpa daya", GAGAL_PENGAMAN_SUHU: "Gagal: suhu", SELESAI_TANPA_VERIFIKASI: "Tanpa verifikasi",
+  GAGAL_TANPA_DAYA: "Gagal: tanpa daya", GAGAL_PENGAMAN_SUHU: "Gagal: suhu", GAGAL_PENGAMAN_LISTRIK: "Gagal: pengaman listrik", GAGAL_LEVEL: "Gagal: level air", SELESAI_TANPA_VERIFIKASI: "Tanpa verifikasi",
   SELESAI: "Selesai",
 };
 export const STATUS_TONE = (s: string): "ok" | "bad" | "neutral" => (s === "LOLOS" ? "ok" : s.startsWith("GAGAL") ? "bad" : "neutral");
@@ -47,5 +47,17 @@ export const FLAG_LABEL: Record<string, string> = {
   SENSOR_MACET: "Sensor warna macet",
   SENSOR_MACET_FALLBACK_PREDIKSI: "Sensor warna macet: berhenti berdasarkan prediksi AI",
   ANOMALI_DOSIS_CEK_SENSOR_ATAU_LIMBAH: "Dosis menyimpang dari prediksi: cek sensor atau jenis limbah",
+  // dari firmware perangkat
+  TEGANGAN_LEBIH: "Tegangan sel melewati batas, arus dimatikan",
+  ARUS_LEBIH: "Arus melewati batas, arus dimatikan",
+  ARUS_TIDAK_MENGALIR: "Arus diperintah tetapi tidak mengalir: periksa elektroda dan catu",
+  SENSOR_ARUS_HILANG: "Sensor arus tidak terbaca, arus dimatikan",
+  SUHU_LEBIH: "Suhu melewati batas pengaman",
+  LEVEL_RENDAH: "Level air rendah: elektroda tidak terendam atau tangki tidak terisi",
+  SENSOR_GAGAL_BACA: "Sensor air gagal terbaca berulang kali",
+  DIHENTIKAN_OPERATOR: "Dihentikan operator",
+  RESTART_TENGAH_BATCH: "Perangkat mati di tengah batch: periksa air sebelum memulai lagi",
+  KALIBRASI_PROBE_BELUM: "Probe pH, EC, atau kekeruhan belum dikalibrasi",
+  NOL_SENSOR_KEDALUWARSA: "Sensor warna belum dinolkan lebih dari 36 jam",
 };
 export const flagText = (f: string): string => FLAG_LABEL[f] ?? f.toLowerCase().replaceAll("_", " ");

@@ -1,0 +1,1 @@
+{ "name": "sebat_core", "version": "0.1.0", "description": "Logika kendali batch SEBAT, tanpa ketergantungan perangkat keras.", "frameworks": "*", "platforms": "*" }

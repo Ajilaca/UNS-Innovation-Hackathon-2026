@@ -45,3 +45,7 @@ CLAUDE.md
 # local tooling artifacts
 .taste-skill/
 .graphifyignore
+
+# firmware: rahasia lokal dan hasil kompilasi uji
+firmware/include/secrets.h
+firmware/host_tests/parity
