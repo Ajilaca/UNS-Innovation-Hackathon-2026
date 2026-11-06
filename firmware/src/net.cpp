@@ -97,9 +97,9 @@ void task(void*) {
 namespace net {
 
 void begin() {
-  snprintf(topicT, sizeof topicT, "sebat/%s/%s/telemetry", SITE_ID, UNIT_ID);
-  snprintf(topicB, sizeof topicB, "sebat/%s/%s/batch", SITE_ID, UNIT_ID);
-  snprintf(topicS, sizeof topicS, "sebat/%s/%s/status", SITE_ID, UNIT_ID);
+  snprintf(topicT, sizeof topicT, "sobat/%s/%s/telemetry", SITE_ID, UNIT_ID);
+  snprintf(topicB, sizeof topicB, "sobat/%s/%s/batch", SITE_ID, UNIT_ID);
+  snprintf(topicS, sizeof topicS, "sobat/%s/%s/status", SITE_ID, UNIT_ID);
   fsLock = xSemaphoreCreateMutex();
   teleQ = xQueueCreate(6, sizeof(char*));
   if (!LittleFS.begin(true)) Serial.println("[net] LittleFS gagal: ringkasan batch tidak bisa disimpan");

@@ -1,0 +1,165 @@
+# Konfigurasi dasar simulator SOBAT.
+# Setiap angka berlabel [DATA] (dari sumber di brief), [ESTIMASI] (tebakan tim) atau [KALIBRASI]
+# (harus diganti setelah uji bench 6-7 Nov, skrip kalibrasi dari data bench belum ada).
+# Skenario di ML/config/scenarios/*.yaml hanya menimpa sebagian kunci (deep-merge).
+
+site:
+  id: lwy
+  name: "UMKM Batik Laweyan (simulasi)"
+  lat: -7.5755          # Solo
+  lon: 110.8243
+  tz_offset_h: 7
+
+unit:
+  unit_id: lwy-001
+  electrode: Fe                 # Fe | Al
+  electrode_area_cm2: 400       # luas satu sisi pelat yang tercelup (total aktif)
+  gap_cm: 1.5
+  batch_volume_L: 50
+  I_default_A: 5.0
+  I_max_A: 10.0
+  U_max_V: 15.0
+  T_max_C: 45.0
+  target_color_ptco: 200        # [DATA] P.16/2019 (tekstil)
+  t_max_min: 120                # batas waktu proses berarus per batch
+  wait_max_min: 120             # batas tunggu matahari
+  fill_s: 120
+  settle_min: 30                # pengendapan setelah arus berhenti
+  sample_interval_s: 10
+  reverse_every_s: 600          # pembalikan polaritas berkala (anti pasivasi)
+  pv_wp: 200
+  battery_wh: 600
+  battery_init_soc: 0.5
+  battery_min_soc: 0.20
+  battery_max_discharge_w: 250
+  dcdc_eff: 0.92
+  aux_load_w: 18                # pompa + pengaduk saat aktif
+  idle_load_w: 3                # ESP32 + sensor
+  min_run_power_w: 35           # di bawah ini proses dijeda
+
+wastewater:
+  # Rentang dari Ariani dkk. UMS 2024 (3 UMKM x 4 sampel). [DATA] untuk rentang, [ESTIMASI] untuk bentuk sebaran.
+  cod_median: 2500
+  cod_sigma: 0.55               # lognormal; cod_scale pada skenario menggeser median
+  cod_scale: 1.0
+  cod_range: [409, 11545]
+  tss_range: [160, 7380]
+  tss_cod_ratio: 0.6
+  ph_mean: 9.5
+  ph_sd: 0.7
+  ph_range: [8.4, 10.8]
+  ec_mean: 3000                 # uS/cm [ESTIMASI]
+  ec_sd: 800
+  ec_min: 900
+  temp_mean: 31
+  temp_sd: 1.5
+  color_per_cod: 0.9            # Pt-Co per mg/L COD [ESTIMASI]
+  color_per_cod_sigma: 0.25
+  turb_per_tss: 0.35            # NTU per mg/L TSS [ESTIMASI]
+
+dyes:                           # eps = penyerapan relatif kanal [R, G, B]; recalcitrant = fraksi warna awal yang tidak bisa diambil EC [ESTIMASI]
+  remazol_merah:    {weight: 0.30, k_mult: 1.00, recalcitrant: 0.02, eps: [0.50, 1.00, 0.25]}
+  naftol_biru:      {weight: 0.25, k_mult: 0.80, recalcitrant: 0.01, eps: [1.00, 0.70, 0.20]}
+  indigosol_hijau:  {weight: 0.25, k_mult: 1.15, recalcitrant: 0.015, eps: [0.90, 0.50, 0.80]}
+  campuran_cokelat: {weight: 0.20, k_mult: 0.70, recalcitrant: 0.03, eps: [0.50, 0.80, 1.00]}
+
+reactor:
+  # Kinetika warna: C = C_res + (C0 - C_res) * exp(-k_d * dosis_mg_per_L)  [KALIBRASI]
+  k_d_Fe: 0.030                 # L/mg  [KALIBRASI] konservatif; uji bench akan menggantinya
+  k_d_Al: 0.080
+  batch_sigma: 0.20             # variasi lognormal antar batch (jenis pewarna/kondisi)
+  load_exponent: -0.20          # k makin kecil pada limbah pekat
+  ph_slope_Fe: -0.08            # perubahan relatif k per satuan pH di atas 9,5
+  ph_slope_Al: -0.18
+  temp_coeff: 0.02
+  color_residual_ptco: 20
+  recalcitrant_scale: 1.0       # pengali fraksi warna membandel (skenario/ sensitivitas)
+  current_eff: {Fe: 1.05, Al: 1.15}
+  overpotential_V: 1.8
+  solution_resistance_scale: 1.0
+  passivation_rate: 0.0015      # per C/L tanpa pembalikan
+  passivation_R_ohm_m2: 0.06
+  passivation_ce_loss: 0.5
+  reversal_reset: 0.35          # sisa lapisan setelah pembalikan
+  ph_target: 8.2
+  ph_rate: 0.002
+  floc_ntu_per_mg: 8.0          # kekeruhan flok per mg/L logam
+  floc_ntu_max: 2000            # flok tersuspensi jenuh (mengendap/mengapung) [ESTIMASI]
+  floc_settle_tau_s: 600
+  heat_loss_w_per_K: 12
+  cod_removal_ratio: 0.75       # fraksi COD turun relatif terhadap fraksi warna turun [ESTIMASI]
+  cod_floor_frac: 0.12
+  sludge_hydroxide_factor: {Fe: 1.91, Al: 2.89}
+
+sensor:
+  eps_scale: 5.0e-4             # absorbansi per Pt-Co pada eps=1 (jalur optik efektif) [KALIBRASI]
+  abs_noise: 0.004
+  abs_sat: 2.3
+  led_jitter_pct: 0.5
+  drift_per_batch: 0.002        # random walk baseline absorbansi
+  bias_pct: 0.0                 # bias skala (lensa kotor => positif)
+  bubble_prob: 0.03             # lonjakan gelembung saat arus mengalir
+  bubble_mag: [0.03, 0.12]
+  floc_leak: 0.30               # fraksi kekeruhan flok yang ikut terbaca di ruang ukur berfilter
+  floc_beta: 2.0e-4             # absorbansi per NTU
+  turb_noise_pct: 5
+  turb_max: 3000
+  ec_noise_pct: 1.0
+  ph_noise: 0.05
+  ph_offset: 0.0
+  temp_noise: 0.1
+  current_noise_A: 0.01
+  dilution_ratio: 5
+  stuck_after_s: null           # simulasi sensor macet (detik sejak batch mulai)
+
+solar:
+  source: nasa_power            # nasa_power (data asli Solo 2024) | synthetic (AR(1), bobot di bawah)
+  nasa_file: data/external/nasa_power_solo_2024_hourly.json
+  flicker_sd: 0.15              # kedip awan sub-jam di atas data per jam [ESTIMASI]
+  weather: acak                 # acak | cerah | berawan | mendung | hujan (nasa: dipilih dari persentil hari musim sama)
+  weights: {cerah: 0.45, berawan: 0.35, mendung: 0.15, hujan: 0.05}
+  states:
+    cerah:   {kt: 0.82, sd: 0.07}
+    berawan: {kt: 0.55, sd: 0.20}
+    mendung: {kt: 0.30, sd: 0.12}
+    hujan:   {kt: 0.14, sd: 0.07}
+  tau_s: 400
+  pr: 0.80
+  start_hour: 8.5               # jam awal simulasi live / kampanye
+  last_start_hour: 15.5         # tidak memulai batch baru setelah jam ini
+
+control:
+  # Kalibrasi sensor yang diketahui kontroler (bukan nilai sebenarnya!)  [KALIBRASI]
+  eps_eff_cal: 3.0e-4           # absorbansi rata-rata 3 kanal per Pt-Co
+  floc_beta_est: 2.0e-4         # perkiraan kontroler untuk koreksi kekeruhan
+  floc_leak_est: 0.30
+  stop_margin: 0.90             # berhenti saat estimasi <= 0,9 x target
+  guard_frac: 0.5               # abaikan sinyal stop sebelum q >= 0,5 x q_prediksi (mode AI)
+  sat_threshold: 1.8
+  undilute_below_ptco: 3000     # lepas pengenceran bila perkiraan warna di bawah ini
+  median_window: 3
+  sample_count: 6
+  k_phys_per_Cpl: 0.0091        # prior fisika: k per (C/L) untuk Fe
+  max_retries: 1
+  reverse_rise: 1.4             # balik polaritas bila R sel naik 1,4x
+  fixed_q_CperL: 300            # strategi waktu tetap: muatan yang disetel untuk limbah rata-rata
+  anomaly_sigma: 2.5
+  plateau_dq_CperL: 120          # warna mentok: bandingkan warna tiap sekian C/L, dua kali berturut; null = matikan [ESTIMASI]
+  plateau_min_drop: 0.04         # dianggap mentok bila ln(warna) turun kurang dari ini (sekitar 4%) [ESTIMASI]
+  unit_calibration:              # koreksi per unit: belajar dari batch nyata unit ini
+    enabled: true
+    window: 5                    # jumlah batch terakhir yang dipakai
+    min_batches: 3               # koreksi mulai berlaku setelah sekian batch terverifikasi
+    limits: [0.25, 4.0]          # batas faktor koreksi
+
+grid:                           # sumber cadangan PLN
+  policy: solar_first           # solar_first | solar_only | grid_only
+  max_w: 400                    # batas daya PLN ke unit (ganti bila kurang)
+  max_wait_min: 120             # tunggu surya sebelum PLN dipakai
+  tariff_rp_per_kwh: 1444       # [CEK] golongan tarif UMKM
+  forecast_horizon_min: 120
+
+cost:                           # Rp, semua [CEK] sebelum dikutip
+  pv_rp_per_kwh: 600            # depresiasi panel+baterai per kWh surya (bukan tarif PLN)
+  electrode_rp_per_kg: 12000
+  sludge_rp_per_kg: 3000        # pengelolaan lumpur B3

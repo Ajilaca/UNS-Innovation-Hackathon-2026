@@ -1,0 +1,1 @@
+{ "name": "sobat_core", "version": "0.1.0", "description": "Logika kendali batch SOBAT, tanpa ketergantungan perangkat keras.", "frameworks": "*", "platforms": "*" }

@@ -1,0 +1,5 @@
+-r ../../ML/requirements.txt
+fastapi>=0.115
+uvicorn[standard]>=0.30
+paho-mqtt>=2.0
+httpx>=0.27

@@ -1,0 +1,8 @@
+# backend boleh membaca semua telemetri dan batch
+user backend
+topic read sobat/#
+
+# Perangkat: nama pengguna MQTT = unit_id. Hanya boleh MENULIS ke topik unit sendiri.
+pattern write sobat/+/%u/telemetry
+pattern write sobat/+/%u/batch
+pattern write sobat/+/%u/status

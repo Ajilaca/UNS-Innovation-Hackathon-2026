@@ -93,7 +93,7 @@ void readPower(Reading& r) {
   r.level_low_ok = digitalRead(PIN_LEVEL_LOW) == LOW;
 }
 
-void readWater(Reading& r, const sebat::Calibration& c, double abs_sat) {
+void readWater(Reading& r, const sobat::Calibration& c, double abs_sat) {
   r.water_ok = false;
   if (!tslOk || !adsOk) return;
   ds.requestTemperatures();
@@ -108,15 +108,15 @@ void readWater(Reading& r, const sebat::Calibration& c, double abs_sat) {
   // cahaya terlalu terang sehingga jenuh: pembacaan tidak bisa dipakai, bukan berarti air jernih
   if (r.light_r < 0 || r.light_g < 0 || r.light_b < 0) return;
   // i0 sudah dikurangi gelap saat dinolkan
-  r.abs_r = sebat::absorbance(r.light_r, r.dark, c.i0_r, abs_sat);
-  r.abs_g = sebat::absorbance(r.light_g, r.dark, c.i0_g, abs_sat);
-  r.abs_b = sebat::absorbance(r.light_b, r.dark, c.i0_b, abs_sat);
+  r.abs_r = sobat::absorbance(r.light_r, r.dark, c.i0_r, abs_sat);
+  r.abs_g = sobat::absorbance(r.light_g, r.dark, c.i0_g, abs_sat);
+  r.abs_b = sobat::absorbance(r.light_b, r.dark, c.i0_b, abs_sat);
   r.v_ph = adcVolts(ADC_PH);
   r.v_ec = adcVolts(ADC_EC);
   r.v_turb = adcVolts(ADC_TURB);
-  r.ph = sebat::phFromVolt(c, r.v_ph);
-  r.ec_uScm = sebat::ecFromVolt(c, r.v_ec, r.temp_C);
-  r.turb_ntu = sebat::turbFromVolt(c, r.v_turb);
+  r.ph = sobat::phFromVolt(c, r.v_ph);
+  r.ec_uScm = sobat::ecFromVolt(c, r.v_ec, r.temp_C);
+  r.turb_ntu = sobat::turbFromVolt(c, r.v_turb);
   r.water_ok = true;
 }
 

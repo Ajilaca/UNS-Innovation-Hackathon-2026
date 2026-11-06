@@ -1,6 +1,6 @@
 // Pemutar jejak: menerima pengamatan yang direkam dari kontroler Python, lalu mencetak keputusan versi C++.
-// Dipanggil oleh backend/tests/test_firmware.py. Tiga perintah:
-//   parity --defaults      cetak nilai bawaan Config, untuk dibandingkan dengan config/sim.yaml
+// Dipanggil oleh dashboard/backend/tests/test_firmware.py. Tiga perintah:
+//   parity --defaults      cetak nilai bawaan Config, untuk dibandingkan dengan ML/config/sim.yaml
 //   parity --payload       cetak contoh telemetri dan ringkasan batch, untuk divalidasi model backend
 //   parity < jejak.txt     putar jejak
 #include <math.h>
@@ -10,7 +10,7 @@
 #include "controller.h"
 #include "convert.h"
 
-using namespace sebat;
+using namespace sobat;
 
 static Prediction g_pred;
 static bool g_has_pred = false;

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>Laporan Proyek SOBAT</title>
+<style>
+@font-face{font-family:PJ;font-weight:400;src:url(../../dashboard/web/node_modules/@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-400-normal.woff2)}
+@font-face{font-family:PJ;font-weight:600;src:url(../../dashboard/web/node_modules/@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-600-normal.woff2)}
+@font-face{font-family:PJ;font-weight:700;src:url(../../dashboard/web/node_modules/@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-700-normal.woff2)}
+@page{size:A4;margin:20mm 20mm 18mm;@bottom-right{content:counter(page) " / " counter(pages);font:8.5pt PJ,sans-serif;color:#5c6a64}@bottom-left{content:"Laporan proyek SOBAT, 6 November 2026";font:8.5pt PJ,sans-serif;color:#5c6a64}}
+:root{--ink:#17231e;--muted:#55635c;--green:#0f7a5f;--deep:#0b5f4b;--soft:#e4f3ec;--rule:#d9e2dd;--peach:#fbf3ec;--amber:#fdf0df;--red:#fbe5e1}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font:400 10pt/1.5 PJ,sans-serif;color:var(--ink)}
+h1{font-size:25pt;line-height:1.15;margin:0 0 3mm;color:var(--deep);font-weight:700}
+.sub{font-size:11.5pt;margin:0 0 1.5mm}.meta{color:var(--muted);font-size:9pt;margin:0 0 7mm}
+h2{font-size:14.5pt;line-height:1.25;color:var(--deep);margin:8mm 0 2.5mm;font-weight:700;break-after:avoid}
+h3{font-size:10.5pt;margin:5mm 0 1.5mm;font-weight:700;break-after:avoid}
+p{margin:0 0 2.6mm}ul,ol{margin:0 0 3mm;padding-left:5mm}li{margin-bottom:1.3mm}
+.lead{background:var(--peach);border-radius:3mm;padding:4.5mm 5.5mm;margin-bottom:5mm}.lead p:last-child{margin:0}
+table{width:100%;border-collapse:collapse;font-size:8.8pt;line-height:1.38;margin:1mm 0 4mm}
+th{text-align:left;font-weight:600;color:var(--muted);border-bottom:1.2pt solid var(--ink);padding:1.3mm 2mm 1.3mm 0;vertical-align:bottom}
+td{border-bottom:.5pt solid var(--rule);padding:1.6mm 2mm 1.6mm 0;vertical-align:top}
+tr{break-inside:avoid}thead{display:table-header-group}
+.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{display:inline-block;padding:.2mm 2mm;border-radius:3mm;font-size:8pt;font-weight:600;white-space:nowrap}
+.ok{background:var(--soft);color:var(--deep)}.part{background:var(--amber);color:#7a4a0c}.no{background:var(--red);color:#8f2a21}
+figure{margin:2mm 0 4mm;break-inside:avoid}figure img{width:100%;display:block;border:.5pt solid var(--rule);border-radius:1.5mm}
+figcaption{font-size:8.5pt;color:var(--muted);margin-top:1.5mm}
+svg.bars{width:74%;display:block;margin:0 auto 1mm}
+.bars text{font:9.6pt PJ,sans-serif;fill:var(--ink)}.bars .m{fill:var(--muted)}
+.src{font-size:8.6pt}.src li{margin-bottom:.8mm}
+.keep{break-inside:avoid}
+</style></head><body>
+
+<h1>SOBAT</h1>
+<p class="sub">Solar-powered Operation for Batik-wastewater Treatment: laporan progres dan kekurangan proyek</p>
+<p class="meta">UNS Innovation Hackathon 2026, Energy Track, sub-tema B. Problem owner: DLH Kota Surakarta. Lokasi pilot: Kampung Batik Laweyan, Solo. Keadaan per 6 November 2026.</p>
+
+<div class="lead">
+<p>SOBAT adalah unit kecil yang mengolah limbah batik dengan elektrokoagulasi bertenaga surya, dengan PLN sebagai cadangan. Sensor warna memantau air, dan kontroler menghentikan arus saat warna memenuhi baku mutu.</p>
+<p>Perangkat lunaknya sudah berjalan: simulasi, kontroler, model AI, backend, dashboard, dan firmware ESP32 yang sudah terkompilasi. Yang belum ada adalah bukti fisik. Alatnya belum dirakit, belum ada uji bench, dan firmware belum pernah berjalan di papan. Semua angka hasil dalam laporan ini berasal dari simulasi dengan parameter tebakan tim, sehingga membuktikan logika sistem, belum akurasi alat.</p>
+<p>Risiko terbesar: bila kalibrasi sensor warna meleset ke 0,6 kali nilai sebenarnya, batch lolos pada simulasi jatuh dari 98% ke 0%. Uji bench harus mengukur ini lebih dulu.</p>
+</div>
+
+<h2>1. Masalah</h2>
+<p>Hanya sekitar 5% zat warna yang menempel di kain, dan sisanya terbuang sebagai limbah. Sebagian industri batik di Laweyan berada di lahan yang lebih rendah dari IPAL komunal, sehingga limbahnya tidak bisa mengalir ke sana. IPAL yang ada juga tidak bekerja optimal: studi UMS mencatat IPAL hanya menerima limbah dari 2 usaha rumahan dan 2 dari 3 motor pengaduknya rusak. Lahan untuk IPAL baru sulit didapat karena Laweyan adalah permukiman padat.</p>
+<p>DLH Surakarta menyebut hanya 22 dari 41 industri batik yang tercakup IPAL, dengan total limbah sekitar 308 m³ per hari. Tanggal artikel sumbernya tidak terlihat, jadi angka ini perlu dikonfirmasi ke DLH. Sampel UMS (3 UMKM, 4 sampel) menunjukkan COD 409 sampai 11.545 ppm, TSS 160 sampai 7.380 ppm, dan pH 8,4 sampai 10,8. Variasi sebesar ini membuat waktu proses tetap sulit cocok untuk semua batch, dan itulah alasan SOBAT memakai kendali berumpan balik.</p>
+
+<h2>2. Cara kerja</h2>
+<p>Limbah dipompa ke reaktor 50 liter. Arus DC melarutkan pelat besi menjadi gumpalan yang menangkap zat warna, lalu gumpalan diendapkan. Sensor warna dibaca tiap 10 detik, dan arus berhenti saat warna mencapai target 200 Pt-Co (Permen LHK P.16/2019). Setelah 30 menit pengendapan, warna akhir diverifikasi. Bila belum lolos, proses diulang sekali. Endapannya diperlakukan sebagai limbah B3 (PP 22/2021).</p>
+<p>Kontroler berjalan di ESP32, jadi proses tetap jalan walau internet putus. Data dikirim lewat MQTT ke server, lalu tampil di dashboard dan laporan untuk DLH. Model AI memperkirakan muatan listrik yang dibutuhkan dari kondisi awal limbah. Perkiraan itu dipakai untuk estimasi waktu, penjadwalan energi, dan peringatan anomali, sedangkan keputusan berhenti tetap dari sensor.</p>
+
+<h2>3. Progres</h2>
+<table>
+<thead><tr><th style="width:27%">Bagian</th><th>Yang sudah ada</th><th style="width:19%">Status</th></tr></thead>
+<tbody>
+<tr><td>Kembaran digital</td><td>Reaktor, kinetika warna, tegangan sel, pasivasi, panas, dan sensor dengan noise, drift, saturasi, gelembung, serta flok</td><td><span class="tag ok">Berjalan</span></td></tr>
+<tr><td>Surya, baterai, PLN</td><td>Irradiansi Solo 2024 dari NASA POWER, tiga kebijakan energi</td><td><span class="tag ok">Berjalan</span></td></tr>
+<tr><td>Kontroler</td><td>Isi, sampling, pengenceran, cek energi, jeda surya, pembalikan polaritas, endap, verifikasi, ulang, koreksi per unit, deteksi warna mentok</td><td><span class="tag ok">Berjalan</span></td></tr>
+<tr><td>Model AI</td><td>Gradient boosting dengan prior fisika, dilatih dari data simulasi</td><td><span class="tag part">Tanpa data nyata</span></td></tr>
+<tr><td>Eksperimen</td><td>Perbandingan strategi, kampanye multi-hari, ukuran panel dan baterai, sensitivitas, ketahanan model</td><td><span class="tag part">Hanya simulasi</span></td></tr>
+<tr><td>Backend dan infrastruktur</td><td>FastAPI, login, MQTT, InfluxDB, SQLite, laporan CSV, Docker</td><td><span class="tag ok">Berjalan lokal</span></td></tr>
+<tr><td>Dashboard</td><td>Pantauan, Batch, Perbandingan, Rekomendasi, Laporan, dan Model AI, juga untuk ponsel</td><td><span class="tag ok">Berjalan</span></td></tr>
+<tr><td>Firmware ESP32</td><td>Kontroler C++, sensor, aktuator, pengaman, MQTT, simpan saat offline, konsol kalibrasi</td><td><span class="tag part">Belum di papan</span></td></tr>
+<tr><td>Server online</td><td>Konfigurasi TLS, Caddy, dan DuckDNS</td><td><span class="tag part">Belum dicoba</span></td></tr>
+<tr><td>Skrip kalibrasi bench</td><td>Belum ada</td><td><span class="tag no">Belum</span></td></tr>
+<tr><td>Uji bench dan data lab</td><td>Belum ada data di repositori</td><td><span class="tag no">Belum</span></td></tr>
+<tr><td>Perangkat keras</td><td>Reaktor, panel, sensor, dan rakitan kendali belum dirakit</td><td><span class="tag no">Belum</span></td></tr>
+</tbody></table>
+
+<figure><img src="pantauan.png" alt="Halaman Pantauan"><figcaption>Gambar 1. Halaman Pantauan dengan data simulasi. Ilustrasi unit di tengah dibuat dengan AI dan bukan foto alat.</figcaption></figure>
+
+<h3>Yang sudah diperiksa</h3>
+<ul>
+<li>75 tes backend dan 20 tes frontend lulus. Pemeriksa navigasi mengklik semua menu dan opsi simulasi di Chrome tanpa galat.</li>
+<li>Keputusan kontroler C++ dibandingkan dengan kontroler Python di setiap langkah, untuk mode waktu tetap, umpan balik, dan AI, juga kasus sensor macet, warna mentok, dan jeda surya. Hasilnya sama. Tes ini sempat menemukan satu bug nyata pada port C++, yang sudah diperbaiki.</li>
+<li>Firmware terkompilasi untuk ESP32 (RAM 18,1%, flash 68,4%), dan payload-nya lolos validasi backend.</li>
+<li>Aplikasi berhasil dijalankan dari salinan bersih repositori, dengan Docker maupun tanpa Docker, di Linux. Windows dan macOS belum dicoba.</li>
+</ul>
+
+<h2>4. Hasil simulasi</h2>
+<p>Angka berikut bukan hasil eksperimen. Kondisi dasar, 100 batch acak, irradiansi Solo asli. Lolos berarti warna akhir sebenarnya di dalam simulasi paling tinggi 200 Pt-Co.</p>
+<table>
+<thead><tr><th>Strategi kendali</th><th class="n">Batch lolos</th><th class="n">Energi (kWh/m³)</th><th class="n">Waktu proses (menit)</th></tr></thead>
+<tbody>
+<tr><td>Waktu tetap, disetel rata-rata</td><td class="n">59%</td><td class="n">0,88</td><td class="n">61</td></tr>
+<tr><td>Waktu tetap, disetel aman</td><td class="n">89%</td><td class="n">1,49</td><td class="n">104</td></tr>
+<tr><td>Umpan balik sensor</td><td class="n">95%</td><td class="n">0,99</td><td class="n">68</td></tr>
+<tr><td>AI (prediksi dan umpan balik)</td><td class="n">95%</td><td class="n">0,99</td><td class="n">68</td></tr>
+</tbody></table>
+<p>Umpan balik sensor adalah sumber keunggulan utama. Dibanding waktu tetap yang disetel aman, batch lolos lebih banyak dengan energi sepertiga lebih kecil. Pada kondisi ini AI tidak menambah mutu air dibanding umpan balik saja.</p>
+<p>Untuk energi, panel 200 Wp dan baterai 600 Wh menjalankan 3 sampai 5 batch per hari tanpa PLN pada data irradiansi 2024. Pada panel 50 Wp, surya murni hanya meloloskan 9 sampai 17% batch, sedangkan hibrida di atas 90%. Di sana AI mulai berguna: pada 50 Wp, 150 Wh, 3 batch per hari, waktu tunggu turun dari 114 menjadi 27 menit dan batch selesai naik dari 82% menjadi 97%. Konsekuensinya, porsi terbarukan turun dari 49% menjadi 44% dan batch lolos dari 96% menjadi 93%.</p>
+
+<div class="keep">
+<h3>Asumsi mana yang paling berbahaya bila salah</h3>
+<p>Satu parameter diubah ke kasus terburuk yang diuji, lainnya tetap, 40 batch per kondisi, kendali umpan balik. Nilai dasarnya 98%.</p>
+<svg class="bars" viewBox="0 0 640 262" role="img" aria-label="Batch lolos pada kasus terburuk tiap asumsi">
+BARS
+</svg>
+<p style="font-size:8.5pt;color:var(--muted)">Gambar 2. Batch lolos pada kasus terburuk tiap asumsi, simulasi. Angka di kurung adalah pengali terhadap nilai dasar.</p>
+</div>
+
+<h2>5. Kekurangan</h2>
+<p>Kekurangan di bawah diurutkan per kelompok, dari yang paling memengaruhi kebenaran klaim proyek.</p>
+
+<h3>Belum ada bukti di dunia nyata</h3>
+<table><thead><tr><th style="width:38%">Kekurangan</th><th>Dampak</th><th style="width:30%">Langkah</th></tr></thead><tbody>
+<tr><td>Belum ada uji bench dan data lab</td><td>Semua hasil masih simulasi. Klaim TKT 3 baru sah setelah ada pembuktian eksperimental.</td><td>Uji bench, lalu uji lab warna, COD, dan TSS</td></tr>
+<tr><td>Parameter kunci masih tebakan: laju warna, kalibrasi sensor, warna per COD, tegangan lebih</td><td>Hasil bisa berubah total (Gambar 2).</td><td>Ukur di bench dan ganti di <code>config/sim.yaml</code></td></tr>
+<tr><td>Kebutuhan muatan bisa jauh lebih besar. Paper Fadzli dkk. 2024 (elektroda Al, pH 3) menyiratkan sekitar 7 kali asumsi kami, menurut turunan kami</td><td>Pada kasus itu unit standar hanya lolos 5%. Reaktor 1600 cm² dengan 35 A lolos 60%, dengan energi 7,8 kWh/m³.</td><td>Ukur muatan nyata dengan elektroda Fe pada limbah Laweyan</td></tr>
+<tr><td>Sensor optik belum terbukti tahan gangguan gumpalan</td><td>Pembacaan warna saat proses bisa keliru, padahal keputusan berhenti bergantung padanya.</td><td>Uji ruang ukur berfilter atau baca setelah jeda singkat</td></tr>
+<tr><td>Model AI dilatih dari data sintetis dan tidak tahan bila simulator salah</td><td>Galat 16% pada kondisi latih naik ke 47 sampai 102% saat laju warna 0,5 sampai 2 kali. Koreksi per unit menekannya ke sekitar 20%, tetapi hanya memperbaiki perkiraan waktu, mutu air nyaris tidak berubah.</td><td>Latih ulang dari batch nyata</td></tr>
+</tbody></table>
+
+<h3>Cakupan solusi</h3>
+<table><thead><tr><th style="width:38%">Kekurangan</th><th>Dampak</th><th style="width:30%">Langkah</th></tr></thead><tbody>
+<tr><td>Status lolos hanya menilai warna</td><td>Baku mutu juga mengatur COD (150), TSS (50), BOD (60), dan pH (6 sampai 9). Perangkat tidak mengukur COD, TSS, dan BOD, dan COD mungkin butuh tahap filtrasi tambahan. pH terukur tetapi belum ikut menentukan status, padahal limbah Laweyan bersifat basa (8,4 sampai 10,8).</td><td>Uji lab berkala, kaji filtrasi, masukkan pH ke penilaian</td></tr>
+<tr><td>Kapasitas unit kecil</td><td>50 L per batch dengan 3 sampai 5 batch per hari berarti paling banyak 250 L per hari. Data UMS: 193, 443, dan 4.116 L per hari, jadi baru cukup untuk UMKM terkecil dari ketiganya.</td><td>Hitung skala unit untuk UMKM menengah</td></tr>
+<tr><td>Manfaat AI kecil pada kondisi normal</td><td>Sumbangannya pada mutu air nol di kondisi dasar, dan pada panel kecil ada ongkos berupa porsi terbarukan yang turun. Klaim "AI" di proposal harus dibatasi.</td><td>Ukur nilai perkiraan waktu dan peringatan anomali secara terpisah</td></tr>
+<tr><td>Biaya belum lengkap. Simulasi memberi sekitar Rp7.700/m³ untuk listrik, elektroda, dan lumpur, dengan harga asumsi yang belum dicek</td><td>Belum termasuk modal reaktor, sensor, dan perawatan. Biaya lumpur B3 bisa menaikkan angka ini, dan daya beli perajin rendah.</td><td>Cek harga, terutama pengelolaan B3, dan susun skema dengan DLH atau CSR</td></tr>
+</tbody></table>
+
+<h3>Firmware dan perangkat keras</h3>
+<table><thead><tr><th style="width:38%">Kekurangan</th><th>Dampak</th><th style="width:30%">Langkah</th></tr></thead><tbody>
+<tr><td>Firmware belum pernah berjalan di papan. Pin, modul, dan penguatan pengatur arus masih usulan</td><td>Sensor, aktuator, jaringan, dan pengaman belum teruji. Bug perangkat keras belum terlihat.</td><td>Ikuti urutan uji aman di <code>firmware/README.md</code></td></tr>
+<tr><td>Anggaran belum aman. Estimasi rakitan Rp4,0 sampai 6,5 juta, dana Rp4,5 juta baru turun setelah 30 besar</td><td>Rakitan rujukan firmware juga memakai 4 INA226 dan ADS1115, yang belum tercatat lengkap di daftar belanja brief.</td><td>Perbarui daftar belanja, pinjam panel dan baterai</td></tr>
+<tr><td>Tidak ada sensor hidrogen</td><td>Firmware tidak mengawasi ventilasi, jadi keselamatan gas bergantung pada penempatan unit.</td><td>Tempatkan di ruang berventilasi, pertimbangkan sensor gas</td></tr>
+<tr><td>Model ML tidak berjalan di ESP32, dan <code>/api/predict</code> belum menerima kunci perangkat</td><td>Mode AI di perangkat hanya memakai prediksi fisika.</td><td>Tambahkan akses prediksi untuk perangkat</td></tr>
+<tr><td>Fitur perangkat belum lengkap</td><td>Telemetri saat offline hilang (ringkasan batch tersimpan), TLS belum memverifikasi sertifikat, SoC baterai kasar dari tegangan, prakiraan surya tanpa data cuaca, belum ada OTA.</td><td>Benahi sebelum dipasang di lapangan</td></tr>
+</tbody></table>
+
+<h3>Perangkat lunak</h3>
+<table><thead><tr><th style="width:38%">Kekurangan</th><th>Dampak</th><th style="width:30%">Langkah</th></tr></thead><tbody>
+<tr><td>Belum ada skrip kalibrasi dari data bench</td><td>Hasil uji bench belum bisa langsung masuk ke simulator.</td><td>Tulis skrip dari CSV uji bench</td></tr>
+<tr><td>Belum pernah dipasang online. Kata sandi demo tertulis di repositori publik</td><td>Tidak aman bila dipasang apa adanya, dan TLS MQTT belum teruji.</td><td>Uji di VM, ganti kata sandi di <code>.env</code></td></tr>
+<tr><td>Laporan DLH belum divalidasi</td><td>Format belum dikonfirmasi DLH. Halaman Laporan hanya merangkum 200 batch terakhir dan belum punya filter tanggal.</td><td>Tanyakan kebutuhan DLH, tambah filter</td></tr>
+<tr><td>Halaman Rekomendasi hanya membaca unit pertama, dan banyak unit belum diuji</td><td>Belum siap untuk lebih dari satu lokasi.</td><td>Tambah pemilih unit</td></tr>
+<tr><td>Database tumbuh tanpa batas: database demo mencapai sekitar 860 MB untuk 1.591 batch, tanpa aturan retensi</td><td>Disk bisa penuh pada pemakaian panjang.</td><td>Atur retensi telemetri</td></tr>
+<tr><td>Notifikasi Telegram di rencana MVP belum dibuat, dan tes frontend masih terbatas</td><td>Operator harus membuka dashboard. Tes tampilan sebagian masih manual.</td><td>Tambahkan setelah uji bench</td></tr>
+</tbody></table>
+
+<h3>Lomba dan mitra</h3>
+<table><thead><tr><th style="width:38%">Kekurangan</th><th>Dampak</th><th style="width:30%">Langkah</th></tr></thead><tbody>
+<tr><td>Dosen ketua (NIDN, NIDK, atau NUPTK aktif) belum tercatat. Brief per 4 November menyebutnya belum ada</td><td>Syarat mutlak: tanpa dosen, pendaftaran tidak sah.</td><td>Pastikan sebelum 7 November</td></tr>
+<tr><td>Proposal 3 halaman dan foto prototipe belum ada di repositori</td><td>Keduanya dibutuhkan untuk mendaftar.</td><td>Susun dari laporan ini dan data bench</td></tr>
+<tr><td>Bukti kebutuhan masih dari sumber sekunder. Data DLH perlu dikonfirmasi, dan data limbah hanya 3 UMKM</td><td>Bukti kebutuhan adalah salah satu kriteria penilaian. Wawancara atau surat mitra belum tercatat.</td><td>Hubungi DLH dan perajin, minta limbah asli</td></tr>
+</tbody></table>
+
+<h2>6. Langkah berikutnya</h2>
+<ol>
+<li>Sebelum 7 November: pastikan dosen ketua, jalankan uji bench, dan kirim proposal. Uji bench mengutamakan kalibrasi sensor warna, gangguan gumpalan, dan muatan yang benar-benar dibutuhkan, karena ketiganya paling menentukan hasil.</li>
+<li>Setelah uji bench: tulis skrip kalibrasi, ganti parameter tebakan, hitung ulang semua analisis, dan latih ulang model.</li>
+<li>Sebelum Problem-Owner Clinic 20 November: konfirmasi data dan format laporan ke DLH.</li>
+<li>Sampai Capstone Prototyping 28 November: rakit unit bench bila dana tersedia, dan jalankan firmware pada papan dengan urutan uji aman.</li>
+<li>Sebelum Hackathon final 4 sampai 6 Desember: uji satu batch utuh dari sensor sampai laporan, lalu bandingkan hasil sensor dengan uji lab.</li>
+</ol>
+<p>Tanggal 8 sampai 28 November mengikuti linimasa lomba di brief, dan tahap-tahapnya bergantung pada lolos seleksi.</p>
+
+<h2>Sumber</h2>
+<ul class="src">
+<li>Kualitas dan volume limbah, kondisi IPAL: Ariani dkk., UMS (sampel September sampai Oktober 2024).</li>
+<li>Cakupan IPAL: Kabid DLH Surakarta lewat Validnews (perlu konfirmasi), Radar Solo 4 Agustus 2025, Solopos 2025.</li>
+<li>Baku mutu dan status lumpur: Permen LHK P.16/2019, PP 22/2021 Lampiran IX.</li>
+<li>Irradiansi: NASA POWER, Solo 2024, data berbasis satelit dan model dengan sel grid sekitar 0,5 derajat.</li>
+<li>Kebutuhan muatan: Fadzli dkk. 2024 (elektroda Al, pH 3). Angka 7 kali adalah turunan tim, dengan efisiensi arus 100%.</li>
+<li>Hasil simulasi, kode, dan tes: repositori github.com/Ajilaca/UNS-Innovation-Hackathon-2026.</li>
+</ul>
+</body></html>

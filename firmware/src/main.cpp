@@ -1,5 +1,5 @@
-// Firmware unit SEBAT. Kendali berjalan di perangkat dan tetap jalan walau internet putus.
-// Logika keputusan ada di lib/sebat_core; berkas ini hanya menyambungkannya ke sensor, aktuator, dan jaringan.
+// Firmware unit SOBAT. Kendali berjalan di perangkat dan tetap jalan walau internet putus.
+// Logika keputusan ada di lib/sobat_core; berkas ini hanya menyambungkannya ke sensor, aktuator, dan jaringan.
 //
 // BELUM DIUJI PADA PERANGKAT KERAS. Lihat firmware/README.md sebelum menyambungkan sel elektrolisis.
 #include <Arduino.h>
@@ -13,7 +13,7 @@
 #include "net.h"
 #include "secrets.h"
 
-using namespace sebat;
+using namespace sobat;
 
 namespace {
 Config cfg;
@@ -310,13 +310,13 @@ void handleLine(String s) {
 void setup() {
   hal::begin();                        // keluaran mati lebih dulu dari apa pun
   Serial.begin(115200);
-  prefs.begin("sebat", false);
+  prefs.begin("sobat", false);
   loadState();
   net::begin();
   reportInterruptedBatch();
   esp_task_wdt_init(30, true);         // kendali macet 30 detik: mulai ulang, keluaran kembali mati
   esp_task_wdt_add(nullptr);
-  Serial.printf("SEBAT firmware 0.1.0, unit %s. Ketik help.\n", UNIT_ID);
+  Serial.printf("SOBAT firmware 0.1.0, unit %s. Ketik help.\n", UNIT_ID);
   if (!cal.colorOk()) Serial.println("Sensor warna belum dikalibrasi: batch akan ditolak.");
 }
 

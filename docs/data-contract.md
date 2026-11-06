@@ -1,12 +1,12 @@
-# Kontrak data SEBAT (v1.1, draf untuk disetujui tim)
+# Kontrak data SOBAT (v1.1, draf untuk disetujui tim)
 
 Semua yang menghasilkan telemetri (firmware ESP32 **dan** simulator) harus mengirim persis bentuk ini. Backend dan frontend tidak boleh peduli sumbernya. Ubah file ini hanya atas kesepakatan tim dan naikkan versinya; firmware, simulator, dan backend diperbarui bersamaan.
 
 ## MQTT
 
-- Telemetri: `sebat/{site_id}/{unit_id}/telemetry` (QoS 1, tiap 10 detik saat batch aktif)
-- Ringkasan batch: `sebat/{site_id}/{unit_id}/batch` (QoS 1, sekali di akhir batch)
-- Status perangkat: `sebat/{site_id}/{unit_id}/status` (retained; `{"online": true, "fw": "0.1.0", "rssi": -61}`)
+- Telemetri: `sobat/{site_id}/{unit_id}/telemetry` (QoS 1, tiap 10 detik saat batch aktif)
+- Ringkasan batch: `sobat/{site_id}/{unit_id}/batch` (QoS 1, sekali di akhir batch)
+- Status perangkat: `sobat/{site_id}/{unit_id}/status` (retained; `{"online": true, "fw": "0.1.0", "rssi": -61}`)
 - Satu pengguna MQTT per perangkat, TLS wajib di internet.
 
 ## Payload telemetri

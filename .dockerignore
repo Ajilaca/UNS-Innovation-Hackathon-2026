@@ -1,10 +1,12 @@
 .venv
 .git
 **/node_modules
-web/dist
-models
-data/*.json
-data/*.sqlite
+dashboard/web/dist
+dashboard/.env
+dashboard/data
+ML/models
+ML/results
+firmware/.pio
 graphify-out
 .claude
 .taste-skill

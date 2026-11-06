@@ -1,0 +1,64 @@
+# Lokal / server tanpa domain:   docker compose -f infra/docker-compose.yml --env-file .env up -d --build
+# Online (HTTPS + MQTT TLS):    tambahkan  -f infra/docker-compose.online.yml
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    restart: unless-stopped
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mosquitto/acl:/mosquitto/config/acl:ro
+      - mosquitto-pass:/mosquitto/passwd
+      - mosquitto-data:/mosquitto/data
+    expose: ["1883"]
+    ports: ["127.0.0.1:1883:1883"]        # hanya dari mesin ini; internet lewat TLS 8883 (compose online)
+
+  influxdb:
+    image: influxdb:2
+    restart: unless-stopped
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: ${INFLUX_USER}
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUX_PASSWORD}
+      DOCKER_INFLUXDB_INIT_ORG: ${INFLUX_ORG:-batikjernih}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${INFLUX_BUCKET:-telemetry}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUX_TOKEN}
+      DOCKER_INFLUXDB_INIT_RETENTION: 90d
+    volumes: [influx-data:/var/lib/influxdb2]
+    expose: ["8086"]
+    ports: ["127.0.0.1:8086:8086"]
+
+  backend:
+    build: { context: ../.., dockerfile: dashboard/infra/Dockerfile }
+    restart: unless-stopped
+    depends_on: [mosquitto, influxdb]
+    environment:
+      BJ_ADMIN_USER: ${BJ_ADMIN_USER:-admin}
+      BJ_ADMIN_PASSWORD: ${BJ_ADMIN_PASSWORD:?isi BJ_ADMIN_PASSWORD di .env}
+      BJ_SECRET: ${BJ_SECRET:?isi BJ_SECRET di .env}
+      BJ_DEMO: ${BJ_DEMO:-1}
+      BJ_DEVICE_KEYS: ${BJ_DEVICE_KEYS:-}
+      BJ_AUTOSTART_SIM: ${BJ_AUTOSTART_SIM:-0}
+      BJ_AUTOSTART_PRESET: ${BJ_AUTOSTART_PRESET:-auto}
+      BJ_AUTOSTART_SCENARIO: ${BJ_AUTOSTART_SCENARIO:-}
+      BJ_AUTOSTART_SPEED: ${BJ_AUTOSTART_SPEED:-120}
+      BJ_DB_PATH: /data/sobat.sqlite
+      BJ_MQTT_HOST: mosquitto
+      BJ_MQTT_USER: backend
+      BJ_MQTT_PASSWORD: ${MQTT_BACKEND_PASSWORD:?isi MQTT_BACKEND_PASSWORD di .env}
+      BJ_INFLUX_URL: http://influxdb:8086
+      BJ_INFLUX_TOKEN: ${INFLUX_TOKEN}
+      BJ_INFLUX_ORG: ${INFLUX_ORG:-batikjernih}
+      BJ_INFLUX_BUCKET: ${INFLUX_BUCKET:-telemetry}
+    volumes:
+      - backend-data:/data
+      - backend-results:/app/ML/results
+      - backend-models:/app/ML/models
+    ports: ["8000:8000"]
+
+volumes:
+  mosquitto-pass: {}
+  mosquitto-data: {}
+  influx-data: {}
+  backend-data: {}
+  backend-results: {}
+  backend-models: {}

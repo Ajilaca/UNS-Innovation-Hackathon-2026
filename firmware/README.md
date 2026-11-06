@@ -1,6 +1,6 @@
 # firmware
 
-Firmware ESP32 untuk unit SEBAT, dengan PlatformIO dan framework Arduino. Kendali berjalan di perangkat dan tetap jalan walau internet putus.
+Firmware ESP32 untuk unit SOBAT, dengan PlatformIO dan framework Arduino. Kendali berjalan di perangkat dan tetap jalan walau internet putus.
 
 > Status: terkompilasi untuk `esp32dev` (RAM 18,1%, flash 68,4%), dan keputusan kontrolernya cocok dengan versi Python pada tes di komputer. Firmware ini belum pernah dijalankan pada papan. Pemetaan pin, jenis modul, dan penguatan pengatur arus adalah usulan yang harus diperiksa saat merakit.
 
@@ -18,7 +18,7 @@ pio device monitor         # konsol serial 115200, ketik help
 Tes tanpa papan, dari akar repositori (perlu g++):
 
 ```bash
-.venv/bin/python -m pytest backend/tests/test_firmware.py
+.venv/bin/python -m pytest dashboard/backend/tests/test_firmware.py
 ```
 
 ## Rakitan rujukan
@@ -68,7 +68,7 @@ Tanpa kalibrasi probe, batch tetap boleh berjalan dengan flag `KALIBRASI_PROBE_B
 
 ## Beda dari simulasi
 
-Logika keputusan sama dengan `backend/app/control.py`. Yang hanya ada di perangkat:
+Logika keputusan sama dengan `ML/sobat_ml/control.py`. Yang hanya ada di perangkat:
 
 - Model ML tidak berjalan di ESP32, jadi mode `ai` memakai prior fisika untuk prediksi. `PredictFn` di `controller.h` sudah disiapkan untuk prediksi dari luar, tetapi belum tersambung, karena `/api/predict` belum menerima kunci perangkat.
 - Pengaman tambahan mematikan arus lebih dulu, baru mencatat: tegangan atau arus lebih, sensor arus hilang, arus tidak mengalir selama 2 menit, level rendah, dan suhu 5 derajat di atas batas kontroler.

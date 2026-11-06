@@ -17,7 +17,7 @@ void allOff();
 /** Listrik dan pelampung. Cepat, aman dipanggil beberapa kali per detik. */
 void readPower(Reading& r);
 /** Optik, pH, EC, kekeruhan, suhu. Memblokir kira-kira satu detik. Tidak pernah mengarang nilai. */
-void readWater(Reading& r, const sebat::Calibration& c, double abs_sat);
+void readWater(Reading& r, const sobat::Calibration& c, double abs_sat);
 /** Menjaga arus sel dan pembalikan polaritas. Panggil tiap putaran cepat. */
 void serviceCurrent(double measured_A, double dt);
 void setCurrent(double amps);
