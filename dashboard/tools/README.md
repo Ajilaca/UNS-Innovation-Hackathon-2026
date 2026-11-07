@@ -5,6 +5,7 @@
 | `sim_unit.py` | Simulator sebagai klien mandiri: mengirim kontrak data yang sama dengan ESP32, lewat MQTT atau HTTP, atau mencetaknya |
 | `navcheck.mjs` | Mengklik semua menu dan opsi simulasi di Chrome tanpa memuat ulang, dan gagal bila ada galat |
 | `shots.mjs` | Tangkapan layar dashboard pada beberapa lebar, tanpa dependensi |
+| `demo-gif.mjs` | Merekam demo dashboard menjadi `docs/demo.gif`: Chrome menelusuri halaman, ffmpeg menyusun GIF. Butuh ffmpeg dan aplikasi yang sedang berjalan |
 
 ```bash
 # dari root repo

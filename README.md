@@ -6,6 +6,12 @@ SOBAT ditujukan untuk usaha batik dan pewarnaan tekstil skala kecil-menengah yan
 
 > Status: prototipe perangkat lunak. Alatnya belum dirakit dan belum ada data eksperimen. Semua angka hasil berasal dari kembaran digital (digital twin) dengan parameter tebakan tim. Simulasi membuktikan logika sistem, belum membuktikan akurasi alat atau penghematan nyata. Firmware sudah terkompilasi tetapi belum pernah dijalankan pada papan ESP32.
 
+## Demo
+
+![Demo dashboard SOBAT](docs/demo.gif)
+
+Rekaman dashboard dengan simulasi live: Pantauan (opsi simulasi A dan C), detail batch, empat tab Perbandingan, Rekomendasi, dan Model AI. Semua data di rekaman berasal dari simulator, bukan dari alat. Ilustrasi unit di Pantauan dibuat dengan AI dan bukan foto alat.
+
 Cara menjalankan dashboard di komputer sendiri (Docker atau tanpa Docker) ada di [dashboard/README.md](dashboard/README.md).
 
 ## Cara kerja
