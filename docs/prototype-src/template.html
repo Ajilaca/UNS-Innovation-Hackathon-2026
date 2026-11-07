@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>Prototipe SOBAT</title>
+<style>
+@page{size:A4;margin:25mm 22mm 22mm 25mm;@bottom-right{content:counter(page);font:10pt "Times New Roman","Liberation Serif",serif}}
+:root{--ink:#000;--muted:#333;--bar:#1f6aa5;--sec:#cfe7f5;--line:#000;--soft:#eef6fb}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font:400 12pt/1.15 "Times New Roman","Liberation Serif",serif;color:var(--ink);text-align:justify}
+.cover{border:1pt solid var(--line);margin-bottom:5mm}
+.cover .bar{background:var(--bar);color:#fff;font-weight:700;text-transform:uppercase;padding:2mm 3mm;line-height:1.35}
+.cover .body{padding:2.5mm 3mm}
+.cover .body p{margin:0 0 1.5mm}
+h1{font-size:12pt;margin:0;font-weight:700}
+h2{font-size:12pt;font-weight:700;margin:6mm 0 3mm;padding:1.4mm 3mm;background:var(--sec);border:1pt solid var(--line);break-after:avoid;text-align:left}
+h2 .num{margin-right:2mm}
+h3{font-size:12pt;font-weight:700;margin:4mm 0 1.5mm;break-after:avoid;text-align:left}
+p{margin:0 0 2.2mm}ul,ol{margin:0 0 2.5mm;padding-left:7mm}li{margin-bottom:1mm}
+.lead{border:1pt solid var(--line);padding:3mm 4mm;margin-bottom:4mm}.lead p:last-child{margin:0}
+.goals{display:grid;grid-template-columns:repeat(3,1fr);border:1pt solid var(--line);margin:0 0 4mm}
+.goal{padding:2.5mm 3mm;font-size:11pt;border-left:1pt solid var(--line);text-align:left}.goal:first-child{border-left:0}
+.goal b{display:block;margin-bottom:1mm}
+.note{border:1pt solid var(--line);background:var(--soft);padding:2.4mm 3.5mm;margin:2mm 0 3.5mm;font-size:11pt}
+.note.green{background:var(--soft)}
+table{width:100%;border-collapse:collapse;font-size:11pt;line-height:1.2;margin:1mm 0 4mm;text-align:left}
+caption{caption-side:top;text-align:center;font-size:11pt;padding-bottom:1.5mm}
+th{font-weight:700;background:var(--sec);border:1pt solid var(--line);padding:1.3mm 2mm;vertical-align:middle;text-align:left}
+td{border:1pt solid var(--line);padding:1.3mm 2mm;vertical-align:top}
+tr{break-inside:avoid}thead{display:table-header-group}
+.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{display:inline-block;padding:0 1.5mm;border:.6pt solid #555;border-radius:1mm;font-size:9.5pt;white-space:nowrap;line-height:1.3}
+.ok{background:#e3f3e8}.part{background:#fdf0dc}.no{background:#fbe3df}.sim{background:#e3eefb}
+figure{margin:2mm 0 4mm;break-inside:avoid}
+figure img{width:100%;display:block;border:.5pt solid #999}
+figcaption{font-size:11pt;margin-top:1.5mm;text-align:center}
+figcaption b{font-weight:400}
+.grid{display:grid;gap:2.5mm}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g6{grid-template-columns:repeat(6,1fr)}
+.grid img{width:100%;height:auto;object-fit:cover;display:block;border:.5pt solid #999}
+.tall img{aspect-ratio:3/4}.sq img{aspect-ratio:1/1}
+.lbl{font-size:10pt;text-align:center;margin-top:.8mm}
+.cap{font-size:11pt;text-align:center;margin-top:1.5mm}
+.cell{display:flex;flex-direction:column}
+svg.chart{width:100%;display:block}
+.chart text{font:9.5pt "Times New Roman","Liberation Serif",serif;fill:#000}.chart .m{fill:#333}
+.eq{margin:1.5mm 0 2.2mm 6mm;text-align:left}
+code{font-family:"Courier New","Liberation Mono",monospace;font-size:10.5pt}
+.pb{break-before:page}
+.keep{break-inside:avoid}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:5mm;align-items:start}
+.refs{font-size:11pt;text-align:left}.refs p{margin:0 0 1.6mm;padding-left:8mm;text-indent:-8mm}
+</style></head><body>
+
+<div class="cover">
+<div class="bar">Dokumen prototipe<br>UNS Innovation Hackathon 2026</div>
+<div class="body">
+<h1>SOBAT (Solar-powered Operation for Batik-wastewater Treatment): Unit Elektrokoagulasi Tenaga Surya dengan Kendali Sensor Warna dan Prediksi AI untuk Limbah Batik UMKM</h1>
+</div>
+<div class="body" style="border-top:1pt solid #000;font-size:11pt;text-align:left">
+<p>Subtema B: Pengelolaan Sampah dan Ekonomi Sirkular. Bidang strategis: Energi. Pemilik masalah: DLH Kota Surakarta. Mitra: Putri Pratiwi Batik. Lokasi pilot: Kampung Batik Laweyan, Solo.</p>
+<p style="margin:0">Tim Institut Teknologi Bandung: Muhammad Wildan Gifari (ketua), M Faza Dzil Ikram, Jeva Steve Sinaga, Alkindi Bintang Akhsan, Abiyyu Ariz Wibowo, dan Ammar Abdurrahim. November 2026.</p>
+</div>
+</div>
+
+<div class="lead">
+<p>SOBAT adalah unit elektrokoagulasi 50 liter per batch dengan pelat besi yang dipasang langsung di tempat perajin dan ditenagai panel surya. Sensor optik membaca warna air, lalu ESP32 menghentikan arus begitu warna mencapai baku mutu 200 Pt-Co. Unit tetap bekerja tanpa internet, dan setiap batch tercatat di dashboard.</p>
+<p>Saat ini perangkat lunaknya (simulasi, kontroler, model AI, dashboard, dan firmware ESP32) sudah berjalan. Kami juga sudah menguji elektrokoagulasi skala gelas sebanyak dua batch dengan larutan pewarna batik. Unit 50 L belum dirakit dan belum diuji dengan limbah batik asli. Kami memperkirakan posisi awal di TKT 4 dan menargetkan TKT 5 sampai 6 lewat uji coba di lokasi mitra.</p>
+</div>
+
+<p>Dokumen ini menjawab tiga pertanyaan:</p>
+<div class="goals">
+<div class="goal"><b>1. Mengapa riset ini dilakukan</b>Masalah limbah batik dan angka yang perlu kami buktikan sendiri.</div>
+<div class="goal"><b>2. Apa yang kami temukan</b>Foto, data arus dan tegangan, perbandingan antarbatch, dan kesimpulan.</div>
+<div class="goal"><b>3. Bagaimana sistemnya bekerja</b>Diagram alur, susunan perangkat, dan dashboard yang sudah berjalan.</div>
+</div>
+
+<p>Agar jelas asal setiap angka, kami memberi label <span class="tag ok">data uji</span> untuk hasil uji skala gelas, <span class="tag sim">simulasi</span> untuk keluaran model simulasi, dan <span class="tag part">perkiraan</span> untuk angka yang belum terukur langsung.</p>
+
+<h2><span class="num">1.</span>Mengapa riset ini dilakukan</h2>
+
+<h3>1.1 Masalah</h3>
+<p>Limbah cair batik masih menjadi masalah lingkungan di banyak sentra batik. Industri batik nasional mencakup 5.946 IKM di 201 sentra dan menyerap sekitar 200 ribu tenaga kerja [1], tetapi IPAL komunal yang disediakan pemerintah belum menjangkau semuanya. Di Pekalongan, empat IPAL komunal hanya mampu mengolah 27 sampai 30 persen limbah batik kota, dan sisanya berpotensi masuk ke sungai [2]. Limbah ini juga beracun: limbah yang sudah diencerkan hingga 0,2 sampai 8,6 persen masih menyebabkan kematian separuh ikan uji dalam 96 jam [3][4].</p>
+<p>Di Surakarta keadaannya serupa. Di Kampung Batik Laweyan baru 22 dari 41 industri batik yang terhubung ke IPAL komunal [5]. Sebagian sisanya terkendala lahan yang lebih rendah dari IPAL sehingga limbah tidak dapat dialirkan [5][6]. Limbah yang tidak terolah, dengan COD hingga 77 kali baku mutu [7][8], masuk ke Kali Jenes dan Kali Premulung, yang oleh DLH Kota Surakarta digolongkan tercemar berat (kelas IV) [9][10].</p>
+<p>Dampaknya juga terasa secara ekonomi. Di DAS Citarum, kerugian akibat pencemaran tiga pabrik tekstil diperkirakan sekitar Rp11,4 triliun selama 2004 sampai 2015 [11]. Di Surakarta, pencemaran Bengawan Solo oleh limbah ciu dan tekstil [12] dapat menaikkan biaya operasional PDAM hingga dua kali lipat [13] dan berdampak pada 6.000 sampai 18.000 pelanggan saat instalasi pengolahan air dihentikan [14][15].</p>
+
+<div class="keep"><h3>1.2 Problem statement</h3>
+<table><caption>Tabel 1. Problem statement SOBAT</caption>
+<tbody>
+<tr><th style="width:27%">Masalah</th><td>UMKM batik yang belum terlayani IPAL, atau terhubung ke IPAL yang tidak dapat diandalkan, tidak memiliki alat pengolah limbah yang bisa dipasang di tempat produksi. Akibatnya limbah berwarna pekat dengan COD jauh di atas baku mutu dibuang ke sungai.</td></tr>
+<tr><th>Sasaran pengguna</th><td>Usaha batik dan pewarnaan tekstil skala kecil sampai menengah. Sasaran awal adalah usaha batik kecil di Laweyan yang bersedia menyediakan sampel dan lokasi uji, serta mitra kami, Putri Pratiwi Batik.</td></tr>
+<tr><th>Bukti kebutuhan</th><td>Data cakupan IPAL Laweyan [5][6], penelitian kondisi IPAL dan kualitas limbah di Laweyan [7], serta status sungai tercemar berat [9][10]. Bukti ini akan divalidasi lewat wawancara minimal lima calon pengguna dan uji sampel dari minimal dua sumber limbah.</td></tr>
+<tr><th>Kebutuhan pengguna</th><td>Unit yang dipasang di lokasi produksi, menyesuaikan proses dengan limbah yang berubah-ubah, tidak memerlukan operator ahli, dan mencatat mutu serta biaya pengolahan setiap batch.</td></tr>
+<tr><th>Target kinerja</th><td>Warna turun ≥90% dan ≤200 Pt-Co, TSS turun ≥85%, pH 6-9, energi ≤5 kWh/m³, dan pembacaan sensor optik terhadap uji Pt-Co laboratorium dengan R² ≥0,9.</td></tr>
+<tr><th>Potensi hilirisasi</th><td>Pengadaan oleh DLH atau Pemkot untuk UMKM di area yang tidak terjangkau IPAL, pendanaan CSR, sewa unit, atau satu unit untuk beberapa perajin bertetangga.</td></tr>
+</tbody></table></div>
+
+<h3>1.3 Tujuan riset</h3>
+<p>Rancangan awal SOBAT kami susun dengan model simulasi. Model itu sudah lengkap, tetapi beberapa angka kuncinya, seperti seberapa cepat warna hilang per muatan listrik dan berapa energi yang dibutuhkan per m³, masih diambil dari literatur. Analisis sensitivitas kami menunjukkan hasil simulasi bisa berubah besar bila angka tersebut tidak tepat. Literatur pun memberi angka energi yang lebih tinggi dari simulasi kami: Fadzli dkk. melaporkan 5,26 kWh/m³ untuk elektroda aluminium [16]. Karena itu kami melakukan uji skala gelas dengan tujuan:</p>
+<ol>
+<li>Membuktikan bahwa pelat besi dan arus listrik dapat menghilangkan warna larutan pewarna batik.</li>
+<li>Mengukur muatan listrik (C/L) dan energi (kWh/m³) yang dibutuhkan, untuk memperbaiki angka di model simulasi.</li>
+<li>Menguji cara mengukur warna yang murah, yaitu foto ponsel yang dikalibrasi, sebagai dasar sensor optik.</li>
+<li>Mendokumentasikan alat dan proses secara nyata.</li>
+</ol>
+<p>Uji yang sudah dilakukan terdiri atas kalibrasi warna, batch 1 (uji utama), dan batch 2 (pengulangan dengan pengambilan sampel berkala).</p>
+
+<h2><span class="num">2.</span>Hasil riset: uji elektrokoagulasi skala gelas</h2>
+
+<h3>2.1 Alat dan kondisi uji</h3>
+<div class="grid g3 tall">
+<figure class="cell"><img src="img/01_batch1_awal_larutan_pekat.jpg"><figcaption>Gambar 1. Reaktor dengan dua pelat besi; kabel merah ke kutub positif, hitam ke kutub negatif.</figcaption></figure>
+<figure class="cell"><img src="img/02_batch1_meja_kerja_awal.jpg"><figcaption>Gambar 2. Peralatan uji: multimeter, adaptor 12 V, dan larutan pewarna.</figcaption></figure>
+<figure class="cell"><img src="img/03_batch1_reaktor_proses.jpg"><figcaption>Gambar 3. Reaktor saat proses berjalan; multimeter dipasang seri untuk membaca arus.</figcaption></figure>
+</div>
+<div class="grid g2 sq">
+<figure class="cell"><img src="img/05_batch1_pelat_closeup.jpg"><figcaption>Gambar 4. Pelat besi selama proses; larutan mulai berubah cokelat.</figcaption></figure>
+<figure class="cell"><img src="img/06_batch1_flok_closeup.jpg"><figcaption>Gambar 5. Flok kuning-oranye terangkat ke permukaan oleh gelembung hidrogen dari katoda.</figcaption></figure>
+</div>
+
+<table><caption>Tabel 2. Kondisi uji</caption>
+<thead><tr><th>Parameter</th><th>Nilai</th></tr></thead><tbody>
+<tr><td>Volume larutan</td><td>500 mL per batch</td></tr>
+<tr><td>Pewarna</td><td>Remazol Black B (Reactive Black 5), 100 mg/L</td></tr>
+<tr><td>Elektrolit</td><td>Na₂SO₄ 2 g/L</td></tr>
+<tr><td>pH awal</td><td>sekitar 7,7 (tanpa penyesuaian)</td></tr>
+<tr><td>Elektroda</td><td>2 pelat besi 5×10 cm, tebal 1-2 mm, luas aktif ±40 cm², jarak antarpelat 4 cm</td></tr>
+<tr><td>Catu daya</td><td>adaptor 12 V 2 A</td></tr>
+<tr><td>Wadah</td><td>wadah plastik bening, ±500 mL</td></tr>
+<tr><td>Pengukuran</td><td>arus dengan multimeter seri, tegangan di terminal, pH dengan kertas pH dan pH meter</td></tr>
+<tr><td>Sampel</td><td>batch 1: 5 mL per titik; batch 2: 20 mL per titik pada menit 0, 2, 5, 10, 15, dan 30</td></tr>
+</tbody></table>
+<p>Karena volume dan jarak pelat pada uji ini berbeda dari unit 50 L, hasilnya kami nyatakan dalam muatan listrik per liter (C/L), bukan waktu. Dengan begitu hasil skala gelas dapat dibandingkan dengan unit yang lebih besar.</p>
+
+<h3>2.2 Perhitungan</h3>
+<p>Muatan per liter sampai titik ke-n. Pada batch 2, V<sub>L</sub> adalah volume efektif yang berkurang 20 mL setiap kali sampel diambil:</p>
+<p class="eq">q<sub>n</sub> = Σ I<sub>i</sub> Δt<sub>i</sub> / V<sub>L</sub> &nbsp;[C/L]</p>
+<p>Energi per volume dan massa besi terlarut menurut hukum Faraday:</p>
+<p class="eq">E = Σ V<sub>i</sub> I<sub>i</sub> Δt<sub>i</sub> / (3,6×10<sup>6</sup> · V<sub>L</sub>/1000) &nbsp;[kWh/m³]<br>m<sub>Fe</sub> = Σ I Δt · 55,85 / (2 × 96.485) &nbsp;[g]</p>
+<p>Absorbansi semu dari foto per kanal warna, dinormalisasi terhadap kertas putih di foto yang sama, serta model penurunan warna yang akan dicocokkan:</p>
+<p class="eq">A = −log<sub>10</sub>(S<sub>sampel</sub> / S<sub>aquadest</sub>) &nbsp;&nbsp;&nbsp; C(q) = C<sub>sisa</sub> + (C<sub>0</sub> − C<sub>sisa</sub>) e<sup>−kq</sup></p>
+
+<h3>2.3 Kalibrasi warna dengan foto ponsel</h3>
+<p>Kami belum memiliki spektrofotometer, sehingga warna diukur dari foto. Sampel 20 mL dituang ke gelas bening berdasar rata di atas kertas HVS putih, lalu difoto dari atas dengan lampu meja yang sama, tanpa flash atau HDR. Warna diambil dari bagian dalam cairan agar logo di dasar gelas tidak ikut terbaca. Deret kalibrasi dibuat dari larutan induk 150 mg/L.</p>
+<div class="grid g6">
+<div class="cell"><img src="img/07_kalibrasi_000mgL_aquadest.jpg" style="aspect-ratio:3/4"><div class="lbl">0 mg/L</div></div>
+<div class="cell"><img src="img/08_kalibrasi_015mgL.jpg" style="aspect-ratio:3/4"><div class="lbl">15 mg/L</div></div>
+<div class="cell"><img src="img/09_kalibrasi_037-5mgL.jpg" style="aspect-ratio:3/4"><div class="lbl">37,5 mg/L</div></div>
+<div class="cell"><img src="img/10_kalibrasi_075mgL.jpg" style="aspect-ratio:3/4"><div class="lbl">75 mg/L</div></div>
+<div class="cell"><img src="img/11_kalibrasi_112-5mgL.jpg" style="aspect-ratio:3/4"><div class="lbl">112,5 mg/L</div></div>
+<div class="cell"><img src="img/12_kalibrasi_150mgL.jpg" style="aspect-ratio:3/4"><div class="lbl">150 mg/L</div></div>
+</div>
+<p class="cap">Gambar 6. Deret kalibrasi dari aquadest sampai konsentrasi tertinggi.</p>
+
+<div class="two" style="grid-template-columns:1.25fr 1fr">
+<div>
+<table><caption>Tabel 3. Hasil kalibrasi <span class="tag ok">data uji</span></caption>
+<thead><tr><th class="n">mg/L</th><th class="n">Absorbansi R</th><th style="padding-left:4mm">Warna di foto</th></tr></thead><tbody>
+<tr><td class="n">0</td><td class="n">0</td><td style="padding-left:4mm">bening (aquadest)</td></tr>
+<tr><td class="n">15</td><td class="n">0,128</td><td style="padding-left:4mm">ungu sangat muda</td></tr>
+<tr><td class="n">37,5</td><td class="n">0,371</td><td style="padding-left:4mm">ungu muda</td></tr>
+<tr><td class="n">75</td><td class="n">0,601</td><td style="padding-left:4mm">ungu</td></tr>
+<tr><td class="n">112,5</td><td class="n">0,889</td><td style="padding-left:4mm">ungu kebiruan pekat</td></tr>
+<tr><td class="n">150</td><td class="n">1,160</td><td style="padding-left:4mm">biru-ungu sangat pekat</td></tr>
+</tbody></table>
+</div>
+<div class="keep">
+<svg class="chart" viewBox="0 0 340 220">CAL_CHART</svg>
+<p class="cap">Gambar 7. Absorbansi semu kanal merah naik hampir lurus terhadap konsentrasi.</p>
+</div>
+</div>
+
+<p>Kanal merah (R) kami gunakan karena nilainya naik hampir linear terhadap konsentrasi. Kanal hijau (G) sudah jenuh sejak 75 mg/L sehingga 112,5 dan 150 mg/L tidak dapat dibedakan. Sebagai pengecekan, sampel awal batch 2 yang dibuat 100 mg/L terbaca 96,7 mg/L, sehingga kalibrasi dan pengencerannya konsisten.</p>
+
+<div class="grid g2" style="grid-template-columns:1fr 2fr;align-items:center">
+<figure class="cell" style="margin:0"><img src="img/14_gelas_dasar_rata_dipakai.jpg" style="aspect-ratio:3/4;object-fit:cover"><figcaption>Gambar 8. Gelas bening berdasar rata untuk semua foto sampel.</figcaption></figure>
+<div class="note" style="margin:0">Cara ukur ini murah dan mudah diulang: satu ponsel, satu lampu meja, dan selembar HVS. Bila hasilnya dapat dikalibrasi terhadap uji Pt-Co di laboratorium, prinsip yang sama bisa dipindahkan ke sensor optik SOBAT, yaitu LED tiga warna dan sensor cahaya di ruang ukur gelap.</div>
+</div>
+
+<h3>2.4 Batch 1 (uji utama)</h3>
+<p>Larutan 500 mL dengan pH awal sekitar 7,7. Perhitungan q dan E memakai V<sub>L</sub> = 0,5 L karena sampel yang diambil hanya 5 mL per titik.</p>
+<table><caption>Tabel 4. Data batch 1 <span class="tag ok">data uji</span></caption>
+<thead><tr><th class="n">Menit</th><th class="n">Arus (A)</th><th class="n">Tegangan (V)</th><th class="n">q (C/L)</th><th class="n">E (kWh/m³)</th></tr></thead><tbody>
+<tr><td class="n">0</td><td class="n">0,42</td><td class="n">11,98</td><td class="n">0</td><td class="n">0</td></tr>
+<tr><td class="n">2</td><td class="n">0,53</td><td class="n">11,90</td><td class="n">114</td><td class="n">0,38</td></tr>
+<tr><td class="n">5</td><td class="n">0,53</td><td class="n">11,91</td><td class="n">305</td><td class="n">1,01</td></tr>
+<tr><td class="n">10</td><td class="n">0,53</td><td class="n">11,92</td><td class="n">623</td><td class="n">2,06</td></tr>
+<tr><td class="n">15</td><td class="n">0,56</td><td class="n">11,92</td><td class="n">950</td><td class="n">3,15</td></tr>
+<tr><td class="n">20</td><td class="n">0,57</td><td class="n">11,90</td><td class="n">1289</td><td class="n">4,26</td></tr>
+<tr><td class="n">30</td><td class="n">0,57</td><td class="n">11,90</td><td class="n">1973</td><td class="n">6,52</td></tr>
+</tbody></table>
+<ul>
+<li>Total muatan sekitar 986 C, setara dengan 0,285 g besi terlarut menurut hukum Faraday. Angka ini belum diverifikasi dengan penimbangan pelat.</li>
+<li>pH naik dengan sendirinya dari sekitar 7,7 menjadi 10,1, karena katoda menghasilkan ion OH⁻.</li>
+<li>Warna memudar jelas dari menit 0 sampai 15, dengan perbedaan kecil antara menit 10 dan 15. Flok kuning-oranye terlihat di permukaan (Gambar 5) dan pelat mulai berkerak.</li>
+<li>Arus stabil di 0,42 sampai 0,57 A.</li>
+<li>Pada batch ini yang didokumentasikan hanya reaktornya, sehingga warna belum diukur secara kuantitatif.</li>
+</ul>
+
+<h3>2.5 Batch 2 (pengulangan)</h3>
+<p>Larutan diencerkan ke 100 mg/L dan pelat diamplas ulang. Pada setiap titik diambil sampel 20 mL untuk difoto; sampel menit 0 dikembalikan ke reaktor setelah difoto.</p>
+<div class="grid g6">
+<div class="cell"><img src="img/15_batch2_menit00.jpg" style="aspect-ratio:3/4"><div class="lbl">menit 0</div></div>
+<div class="cell"><img src="img/16_batch2_menit02.jpg" style="aspect-ratio:3/4"><div class="lbl">menit 2</div></div>
+<div class="cell"><img src="img/17_batch2_menit05.jpg" style="aspect-ratio:3/4"><div class="lbl">menit 5</div></div>
+<div class="cell"><img src="img/18_batch2_menit10.jpg" style="aspect-ratio:3/4"><div class="lbl">menit 10</div></div>
+<div class="cell"><img src="img/19_batch2_menit15.jpg" style="aspect-ratio:3/4"><div class="lbl">menit 15</div></div>
+<div class="cell"><img src="img/20_batch2_menit30.jpg" style="aspect-ratio:3/4"><div class="lbl">menit 30</div></div>
+</div>
+<p class="cap">Gambar 9. Sampel batch 2 dari menit 0 sampai 30. Warna ungu hilang sejak menit 2; menit 5 dan 10 masih keruh oleh partikel besi; menit 15 dan 30 kuning jernih.</p>
+
+<table style="font-size:9.5pt"><caption>Tabel 5. Data batch 2 dan pengamatan foto</caption>
+<thead><tr><th class="n">Menit</th><th class="n">Arus (A)</th><th class="n">Tegangan (V)</th><th class="n">V<sub>L</sub> (mL)</th><th class="n">q (C/L)</th><th class="n">E (kWh/m³)</th><th>Warna di foto</th><th>Sisa pewarna <span class="tag part">perkiraan</span></th><th>Keandalan</th></tr></thead><tbody>
+<tr><td class="n">0</td><td class="n">0,42</td><td class="n">11,88</td><td class="n">500</td><td class="n">0</td><td class="n">0</td><td>biru-ungu pekat</td><td>100% (96,7 mg/L)</td><td><span class="tag ok">valid</span></td></tr>
+<tr><td class="n">2</td><td class="n">0,46</td><td class="n">11,86</td><td class="n">500</td><td class="n">105,6</td><td class="n">0,35</td><td>kuning-cokelat, ada partikel</td><td>≈13%</td><td><span class="tag part">rendah</span></td></tr>
+<tr><td class="n">5</td><td class="n">0,42</td><td class="n">11,88</td><td class="n">480</td><td class="n">270,6</td><td class="n">0,89</td><td>cokelat gelap, keruh</td><td>≈27%</td><td><span class="tag no">tidak dipakai</span></td></tr>
+<tr><td class="n">10</td><td class="n">0,43</td><td class="n">11,90</td><td class="n">460</td><td class="n">547,8</td><td class="n">1,81</td><td>cokelat gelap, keruh</td><td>≈35%</td><td><span class="tag no">tidak dipakai</span></td></tr>
+<tr><td class="n">15</td><td class="n">0,40</td><td class="n">11,93</td><td class="n">440</td><td class="n">830,8</td><td class="n">2,74</td><td>kuning jernih</td><td>≈10%</td><td><span class="tag ok">cukup</span></td></tr>
+<tr><td class="n">30</td><td class="n">0,36</td><td class="n">11,90</td><td class="n">420</td><td class="n">1645</td><td class="n">5,44</td><td>kuning jernih</td><td>≈0% (diasumsikan)</td><td><span class="tag ok">cukup</span></td></tr>
+</tbody></table>
+<ul>
+<li>Total muatan sekitar 726 C, setara dengan 0,21 g besi terlarut. pH akhir 10,2.</li>
+<li>Arus turun perlahan dari 0,46 menjadi 0,36 A. Penyebab yang paling mungkin adalah muka air yang turun karena lima kali pengambilan sampel 20 mL, sehingga bagian pelat yang terendam berkurang. Ini pengaruh cara pengambilan sampel, bukan pengaruh proses.</li>
+</ul>
+
+<h3>2.6 Tantangan pengukuran: warna besi ikut terbaca</h3>
+<p>Setelah arus dialirkan, sampel berubah dari ungu menjadi kuning-cokelat. Warna ini sebagian besar berasal dari besi terlarut (Fe(III)), bukan pewarna, tetapi kamera ikut membacanya. Bila dibaca langsung dari kanal merah, menit 15 dan 30 seolah masih menyisakan sekitar 23% warna, padahal sebagian besar kemungkinan adalah besi.</p>
+<p>Untuk memisahkannya, kami membandingkan ketiga kanal warna dengan anggapan bahwa sampel menit 30 sudah bebas pewarna. Hasilnya adalah kolom "sisa pewarna" pada Tabel 5. Anggapan ini masuk akal, tetapi masih perlu dibuktikan.</p>
+<p>Sampel menit 5 dan 10 masih keruh oleh partikel besi yang melayang, sehingga terbaca lebih pekat daripada menit 2, sesuatu yang tidak mungkin terjadi secara fisik. Karena itu kedua titik tersebut tidak kami pakai, dan kurva lengkap warna terhadap muatan beserta konstanta lajunya belum dapat ditentukan dari data ini.</p>
+
+<h3>2.7 Perbandingan</h3>
+<div class="keep"><table><caption>Tabel 6. Perbandingan batch 1 dan batch 2 <span class="tag ok">data uji</span></caption>
+<thead><tr><th>Aspek</th><th>Batch 1</th><th>Batch 2</th><th>Keterangan</th></tr></thead><tbody>
+<tr><td>Arus awal</td><td class="n">0,42 A</td><td class="n">0,42 A</td><td>Kondisi awal berulang dengan baik</td></tr>
+<tr><td>Tegangan</td><td>11,90-11,98 V</td><td>11,86-11,93 V</td><td>Catu daya stabil</td></tr>
+<tr><td>Arus selama proses</td><td>naik ke 0,57 A</td><td>turun ke 0,36 A</td><td>Volume batch 2 berkurang karena pengambilan sampel</td></tr>
+<tr><td>pH akhir</td><td class="n">10,1</td><td class="n">10,2</td><td>Kenaikan pH konsisten di kedua batch</td></tr>
+<tr><td>Total muatan (besi teoretis)</td><td>986 C (0,285 g)</td><td>726 C (0,21 g)</td><td>Belum diverifikasi dengan penimbangan</td></tr>
+<tr><td>q dan E pada menit 15</td><td>950 C/L, 3,15 kWh/m³</td><td>831 C/L, 2,74 kWh/m³</td><td>Mirip; pada titik ini sampel batch 2 sudah kuning jernih</td></tr>
+<tr><td>Pengukuran warna</td><td>tidak ada</td><td>6 foto terkalibrasi</td><td>Hanya batch 2 yang dapat dianalisis warnanya</td></tr>
+</tbody></table></div>
+
+<table><caption>Tabel 7. Hasil uji, simulasi, dan target</caption>
+<thead><tr><th>Ukuran</th><th>Uji skala gelas</th><th>Simulasi</th><th>Target</th><th>Status</th></tr></thead><tbody>
+<tr><td>Energi sampai warna turun ±90%</td><td>antara 0,35 dan 2,7 kWh/m³</td><td>0,99 kWh/m³</td><td>≤ 5 kWh/m³</td><td><span class="tag part">dalam rentang, belum pasti</span></td></tr>
+<tr><td>Muatan sampai warna turun ±90%</td><td>antara 106 dan 831 C/L; perkiraan 100-300 C/L</td><td>-</td><td>diukur</td><td><span class="tag part">perkiraan</span></td></tr>
+<tr><td>Penurunan warna</td><td>sisa ±10% atau kurang pada 831 C/L</td><td>95% batch lolos 200 Pt-Co</td><td>≥ 90% dan ≤ 200 Pt-Co</td><td><span class="tag part">belum diukur dalam Pt-Co</span></td></tr>
+<tr><td>pH keluaran</td><td>naik ke 10,1-10,2</td><td>-</td><td>6-9</td><td><span class="tag no">di atas batas</span></td></tr>
+<tr><td>Ketepatan sensor</td><td>foto ponsel: 100 mg/L terbaca 96,7 mg/L</td><td>-</td><td>R² ≥ 0,9 terhadap Pt-Co</td><td><span class="tag part">belum diuji terhadap Pt-Co</span></td></tr>
+<tr><td>Penurunan TSS</td><td>belum diuji</td><td>-</td><td>≥ 85%</td><td><span class="tag no">belum diuji</span></td></tr>
+</tbody></table>
+<p>Tabel 7 juga menunjukkan bahwa pH keluaran berada di atas batas baku mutu 6-9. Pada unit sebenarnya kemungkinan dibutuhkan tahap penetralan, dan hal ini akan kami sertakan dalam pengujian berikutnya.</p>
+
+<h3>2.8 Temuan utama</h3>
+<div class="note">
+<p style="margin-bottom:1.5mm">Pada uji skala gelas, warna larutan pewarna 100 mg/L turun hingga tersisa sekitar 10% atau kurang pada muatan sekitar 830 C/L (sekitar 2,7 kWh/m³), di bawah target 5 kWh/m³. Penurunan ini diperkirakan sudah tercapai pada muatan yang lebih rendah; titik tepatnya akan ditentukan pada uji lanjutan.</p>
+<p style="margin:0">Angka 830 C/L adalah batas atas yang didukung sampel jernih, bukan titik 90% yang pasti.</p>
+</div>
+<ul>
+<li>Warna ungu hilang secara visual sejak menit 2 (q ≈ 106 C/L). Sampel menit 15 dan 30 berupa cairan kuning jernih tanpa sisa ungu.</li>
+<li>Muatan untuk penurunan 90% berada di antara sekitar 106 dan 831 C/L, atau 0,35 sampai 2,7 kWh/m³. Estimasi simulasi 0,99 kWh/m³ berada dalam rentang ini, tetapi belum terkonfirmasi.</li>
+<li><span class="tag part">perkiraan</span> Penurunan 90% diperkirakan tercapai pada q sekitar 100 sampai 300 C/L (0,3 sampai 1,0 kWh/m³). Nilai awal untuk model simulasi: k ≈ 0,015 per C/L (rentang 0,008-0,023) dan C<sub>sisa</sub> ≈ 0.</li>
+<li>pH naik dengan sendirinya dari sekitar 7,7 menjadi 10,1-10,2 di kedua batch.</li>
+<li>Kondisi awal (0,42 A, sekitar 11,9 V) berulang dengan baik antarbatch.</li>
+<li>Kalibrasi foto ponsel konsisten: larutan 100 mg/L terbaca 96,7 mg/L.</li>
+</ul>
+
+<h3>2.9 Rencana uji berikutnya</h3>
+<ol>
+<li>Mengendapkan sampel lebih lama (30-60 menit atau semalam) dan menyaring cairan atasnya sebelum difoto, agar partikel besi tidak ikut terbaca.</li>
+<li>Menjalankan proses 30 menit tanpa pewarna sebagai acuan warna besi murni, sehingga pemisahan warna pewarna dan besi tidak lagi bergantung pada anggapan.</li>
+<li>Menyusun kurva warna terhadap muatan, mencocokkan model C(q) untuk mendapatkan k, C<sub>sisa</sub>, dan muatan untuk penurunan 90%, lalu memasukkannya ke model simulasi.</li>
+<li>Menimbang pelat sebelum dan sesudah proses untuk memverifikasi hukum Faraday.</li>
+<li>Menguji arus yang lebih besar dengan jarak pelat sekitar 0,7 cm, untuk memastikan hasil memang bergantung pada total muatan.</li>
+<li>Mengulang uji pada volume 1,5 L, lalu dengan limbah batik asli dari mitra, dan membandingkannya dengan uji laboratorium (Pt-Co, COD, TSS).</li>
+</ol>
+
+<h2 class="pb"><span class="num">3.</span>Alur kerja sistem</h2>
+
+<h3>3.1 Diagram alur</h3>
+<figure><img src="img/diagram-alur.svg"><figcaption>Gambar 10. Diagram alur SOBAT: jalur proses fisik (biru) dan jalur kendali (hijau). Garis putus-putus adalah sinyal antarsistem: pengukuran dari reaktor ke sensor, dan perintah arus dari ESP32 ke catu daya reaktor.</figcaption></figure>
+<div class="two">
+<div>
+<p><b>Jalur proses fisik (per batch)</b></p>
+<ol>
+<li>Limbah disaring dari padatan kasar dan sisa lilin, lalu ditampung agar karakteristiknya lebih seragam.</li>
+<li>Limbah diolah di reaktor elektrokoagulasi ±50 L dengan pelat besi dan catu daya terkendali dari panel surya dan baterai.</li>
+<li>Sensor optik membaca warna di ruang ukur dengan pencahayaan tetap.</li>
+<li>Arus dihentikan saat warna mencapai target atau saat terjadi gangguan.</li>
+<li>Flok diendapkan, lalu air olahan dipisahkan dari lumpur.</li>
+<li>Hasilnya air olahan yang berpotensi dipakai ulang untuk membilas kain, dan lumpur besi hidroksida yang ditangani sebagai limbah B3.</li>
+</ol>
+</div>
+<div>
+<p><b>Jalur kendali dan data</b></p>
+<ol>
+<li>ESP32 membaca arus, tegangan, dan sensor optik.</li>
+<li>Selama proses, ESP32 menghitung muatan kumulatif q dan energi, lalu mencatatnya.</li>
+<li>Arus dihentikan bila warna sudah di bawah target. Bila sensor bermasalah atau arus berlebih, ESP32 menghentikan proses dengan aman.</li>
+<li>Model AI memperkirakan muatan yang dibutuhkan dan menjadwalkan batch berdasarkan kondisi awal limbah dan ketersediaan energi surya.</li>
+<li>Data batch dikirim ke dashboard. Seluruh kendali tetap berjalan tanpa internet.</li>
+</ol>
+</div>
+</div>
+<p>Prinsip kimianya: arus melarutkan besi dari anoda (Fe → Fe²⁺ + 2e⁻). Besi bereaksi dengan ion OH⁻ dari katoda dan oksigen membentuk flok Fe(OH)<sub>n</sub> yang mengikat zat warna dan partikel. Gelembung hidrogen dari katoda mengangkat sebagian flok ke permukaan, seperti yang terlihat pada Gambar 5.</p>
+
+<h3>3.2 Susunan perangkat</h3>
+<figure><img src="img/susunan-perangkat.svg"><figcaption>Gambar 11. Susunan perangkat SOBAT dalam tiga lapis: energi, kendali, dan aliran air (gambar skematis).</figcaption></figure>
+<table><caption>Tabel 8. Komponen dan status pengembangan</caption>
+<thead><tr><th>Komponen</th><th>Fungsi</th><th>Status</th></tr></thead><tbody>
+<tr><td>Reaktor elektrokoagulasi</td><td>±50 L per batch, pelat besi, catu arus terkendali</td><td><span class="tag part">diuji skala gelas (500 mL)</span></td></tr>
+<tr><td>Sensor optik warna</td><td>Membaca warna di ruang ukur gelap dan menjadi dasar penghentian arus</td><td><span class="tag part">prinsip diuji dengan foto ponsel</span></td></tr>
+<tr><td>ESP32</td><td>Kendali lokal, perhitungan muatan dan energi, pengaman, penyimpanan data saat offline</td><td><span class="tag part">firmware selesai, belum diuji pada papan</span></td></tr>
+<tr><td>Panel surya dan baterai</td><td>Sumber listrik utama, dengan PLN sebagai cadangan</td><td><span class="tag sim">dirancang dengan simulasi</span></td></tr>
+<tr><td>Model AI</td><td>Perkiraan muatan dan jadwal batch sesuai ketersediaan energi</td><td><span class="tag sim">dilatih dari data simulasi; akan dilatih ulang dengan data uji</span></td></tr>
+<tr><td>Dashboard</td><td>Riwayat batch, energi, dan laporan untuk DLH</td><td><span class="tag ok">berjalan (lihat 3.4)</span></td></tr>
+</tbody></table>
+<p>Estimasi simulasi untuk unit penuh <span class="tag sim">simulasi</span>: energi 0,99 kWh/m³, besi 119 g/m³, lumpur 1,77 kg/m³, biaya sekitar Rp7.700/m³, dan 95% batch memenuhi target warna.</p>
+<p>Yang membedakan SOBAT: arus dihentikan berdasarkan pengukuran warna, bukan waktu tetap; energi setiap batch tercatat; kendali berjalan di lokasi tanpa internet; dan setiap batch dapat ditelusuri melalui dashboard.</p>
+
+<h3>3.3 Alur kerja satu batch</h3>
+<figure><img src="img/alur-batch.svg"><figcaption>Gambar 12. Tujuh langkah satu batch, dari penyaringan limbah sampai data tercatat di dashboard.</figcaption></figure>
+
+<h3>3.4 Dashboard</h3>
+<p>Dashboard sudah berjalan dan dapat dibuka di komputer maupun ponsel; kodenya tersedia di repositori tim [17]. Angka pada tangkapan layar berikut berasal dari simulasi, dan dashboard menandainya dengan label "Data simulasi".</p>
+<figure><img src="img/d-login.jpg"><figcaption>Gambar 13. Halaman masuk, dengan akun admin dan mode demo yang hanya dapat dibaca.</figcaption></figure>
+<figure><img src="img/d-pantauan.jpg"><figcaption>Gambar 14. Halaman Pantauan: tahap proses dan perkiraan waktu selesai, kondisi unit (daya panel, baterai, arus), rekomendasi, enam pembacaan sensor, grafik warna, sumber energi, dan aktivitas terakhir.</figcaption></figure>
+<div class="grid g2">
+<figure class="cell"><img src="img/d-batch.jpg"><figcaption>Gambar 15. Riwayat batch dengan status, warna awal dan akhir, energi, dan biaya.</figcaption></figure>
+<figure class="cell"><img src="img/d-batch-detail.jpg"><figcaption>Gambar 16. Rincian batch: warna terhadap waktu, arus dan tegangan sel, besi terlarut, dan lumpur.</figcaption></figure>
+</div>
+<div class="grid g2">
+<figure class="cell"><img src="img/d-banding1.jpg"><figcaption>Gambar 17. Perbandingan strategi kendali: waktu tetap, umpan balik sensor, dan AI.</figcaption></figure>
+<figure class="cell"><img src="img/d-banding2.jpg"><figcaption>Gambar 18. Perbandingan sumber energi: surya, hibrida, dan PLN.</figcaption></figure>
+<figure class="cell"><img src="img/d-banding3.jpg"><figcaption>Gambar 19. Ukuran panel dan baterai yang dibutuhkan.</figcaption></figure>
+<figure class="cell"><img src="img/d-banding4.jpg"><figcaption>Gambar 20. Asumsi yang paling memengaruhi hasil.</figcaption></figure>
+</div>
+<div class="grid g2">
+<figure class="cell"><img src="img/d-rekomendasi.jpg"><figcaption>Gambar 21. Rekomendasi untuk operator, disusun dari aturan tetap agar alasannya dapat ditelusuri.</figcaption></figure>
+<figure class="cell"><img src="img/d-laporan.jpg"><figcaption>Gambar 22. Laporan untuk DLH: volume terolah, batch yang memenuhi target, energi, biaya, lumpur, dan unduhan CSV.</figcaption></figure>
+</div>
+<figure><img src="img/d-model.jpg"><figcaption>Gambar 23. Halaman Model AI: galat model dibanding rumus fisika, fitur yang paling berpengaruh, dan formulir uji prediksi. Model masih dilatih dari data simulasi dan akan dilatih ulang dengan data uji.</figcaption></figure>
+
+<h2 class="pb"><span class="num">4.</span>Keterbatasan dan kesimpulan</h2>
+<h3>4.1 Keterbatasan</h3>
+<ul>
+<li>Kendali otomatis dengan ESP32 belum diterapkan, dan sensor belum dipasang sebagai masukan. Pada uji ini arus dan tegangan dibaca manual dengan multimeter, waktu dicatat langsung, dan warna diukur dari foto ponsel. Firmware ESP32 sudah selesai, tetapi belum dijalankan pada papan dengan sensor arus, tegangan, dan warna yang terpasang.</li>
+<li>Pewarna yang diuji baru Remazol Black B (Reactive Black 5) dalam larutan buatan. Naftol, indigosol, campuran pewarna, zat kimia lain yang biasa dipakai perajin, dan limbah batik asli belum diuji.</li>
+<li>Warna belum diukur dalam satuan Pt-Co di laboratorium, dan COD, TSS, serta BOD belum diuji. pH keluaran naik ke 10,1-10,2, di atas batas baku mutu 6-9.</li>
+<li>Skala uji masih 500 mL, jauh dari unit 50 L, dengan jarak pelat 4 cm dan pH awal sekitar 7,7. Pelat belum ditimbang, dan dua titik pengukuran batch 2 tidak dapat dipakai karena sampel masih keruh.</li>
+</ul>
+
+<h3>4.2 Kesimpulan</h3>
+<p>Hipotesis awal kami terbukti pada skala gelas: reaksi elektrokoagulasi dengan pelat besi dapat mengurangi warna larutan pewarna batik. Pada dua batch, warna ungu hilang secara visual sejak menit kedua, flok besi terbentuk dan terangkat sesuai teori, dan pada muatan sekitar 830 C/L (sekitar 2,7 kWh/m³) cairan menjadi kuning jernih dengan sisa pewarna sekitar 10% atau kurang. Energi tersebut masih di bawah target 5 kWh/m³, dan estimasi simulasi kami (0,99 kWh/m³) berada dalam rentang hasil uji.</p>
+<p>Hasil ini membuktikan prinsip kerja untuk satu jenis pewarna pada skala gelas. Untuk menyatakan SOBAT mampu mengolah limbah batik secara umum, masih dibutuhkan uji dengan pewarna lain dan limbah batik asli, uji laboratorium Pt-Co, COD, dan TSS, serta penerapan kendali otomatis dengan ESP32 dan sensor terpasang. Ketiganya sudah masuk dalam rencana kami menuju TKT 5 sampai 6.</p>
+
+<h2 class="pb">Daftar pustaka</h2>
+<div class="refs">
+<p>[1] ANTARA, "Kemenperin sebut industri batik menyerap 200 ribu tenaga kerja," 26 Sep. 2024. https://www.antaranews.com/berita/4360315/kemenperin-sebut-industri-batik-menyerap-200-ribu-tenaga-kerja</p>
+<p>[2] Pemerintah Provinsi Jawa Tengah, "Tambah IPAL, pelaku usaha batik didorong terapkan standar industri hijau." https://jatengprov.go.id/beritadaerah/tambah-ipal-pelaku-usaha-batik-didorong-terapkan-standar-industri-hijau/</p>
+<p>[3] N. R. Juliardi AR, N. Andini, dan Yuliatin AS, "Analisis toksisitas limbah cair batik tulis dan bioconcentration factor ikan sepat (Trichogaster tricopterus)," Envirotek, vol. 12, no. 1, hlm. 19-26, 2020, doi: 10.33005/envirotek.v12i1.44.</p>
+<p>[4] S. Oktavia dan C. Novi, "Acute toxicity of household-scale Lebak batik industrial wastewater on common carp," Biosfer: Jurnal Tadris Biologi, vol. 12, no. 2, hlm. 140-148, 2021, doi: 10.24042/biosfer.v12i2.9737.</p>
+<p>[5] Validnews, "Mengawal bangkitnya batik agar minim residu." https://validnews.id/nasional/mengawal-bangkitnya-batik-agar-minim-residu</p>
+<p>[6] Radar Solo, "Dorong penggunaan pewarna alami dan IPAL komunal di Kampung Batik Laweyan," 4 Agu. 2025. https://radarsolo.jawapos.com/solo/846389849/dorong-penggunaan-pewarna-alami-dan-ipal-komunal-di-kampung-batik-laweyan</p>
+<p>[7] S. A. Ariani dkk., "Evaluasi IPAL komunal pada beberapa sentra batik di Kampung Batik Laweyan," Prosiding Kolokium Riset Mahasiswa, Universitas Muhammadiyah Surakarta, 2025. https://proceedings.ums.ac.id/korma/article/view/6701</p>
+<p>[8] Kementerian LHK, Peraturan Menteri LHK Nomor P.16/MENLHK/SETJEN/KUM.1/4/2019 tentang Perubahan Kedua atas Permen LH Nomor 5 Tahun 2014 tentang Baku Mutu Air Limbah, 2019.</p>
+<p>[9] Solopos, "Limbah industri batik cemari sungai-sungai di Solo," 2017. https://www.solopos.com/limbah-industri-batik-cemari-sungai-sungai-di-solo-856479</p>
+<p>[10] Merdeka.com, "Limbah batik dominasi pencemaran sungai di Solo," 3 Okt. 2017. https://www.merdeka.com/peristiwa/limbah-batik-dominasi-pencemaran-sungai-di-solo.html</p>
+<p>[11] Greenpeace Indonesia, Koalisi Melawan Limbah, dan Institute of Ecology Universitas Padjadjaran, "Konsekuensi tersembunyi: Valuasi kerugian ekonomi akibat pencemaran industri," 2016, dikutip dalam Mongabay Indonesia, 23 Mei 2016. https://www.mongabay.co.id/2016/05/23/masalah-citarum-masalah-kita-semua/</p>
+<p>[12] detikJateng, "Bengawan Solo tercemar limbah ciu-tekstil, pengolahan air baku disetop," 21 Mei 2024. https://www.detik.com/jateng/berita/d-7351077/bengawan-solo-tercemar-limbah-ciu-tekstil-pengolahan-air-baku-disetop</p>
+<p>[13] detikNews, "Pengolahan air Bengawan Solo disetop, PDAM Solo khawatirkan cadangan air minum," 9 Sep. 2021. https://news.detik.com/berita-jawa-tengah/d-5716197/pengolahan-air-bengawan-solo-disetop-pdam-solo-khawatirkan-cadangan-air-minum</p>
+<p>[14] Kompas.com, "Bengawan Solo tercemar limbah ciu, diduga sudah berlangsung 5 tahun," 9 Sep. 2021. https://regional.kompas.com/read/2021/09/09/122705378/bengawan-solo-tercemar-limbah-ciu-diduga-sudah-berlangsung-5-tahun</p>
+<p>[15] ANTARA, "PDAM Toya Wening Solo hentikan operasi pengolahan air karena limbah," 21 Des. 2023. https://www.antaranews.com/berita/3881784/pdam-toya-wening-solo-hentikan-operasi-pengolahan-air-karena-limbah</p>
+<p>[16] J. Fadzli, S. W. Puasa, N. R. Nik Him, K. H. Ku Hamid, dan N. Amri, "Electrocoagulation: Removing colour and COD from simulated and actual batik wastewater," Desalination and Water Treatment, vol. 320, 100658, 2024, doi: 10.1016/j.dwt.2024.100658.</p>
+<p>[17] Tim SOBAT, "UNS-Innovation-Hackathon-2026," repositori GitHub, 2026. https://github.com/Ajilaca/UNS-Innovation-Hackathon-2026</p>
+</div>
+
+<h2 class="pb">Lampiran: bahan dan alat uji</h2>
+<table><caption>Tabel 9. Bahan dan alat</caption>
+<thead><tr><th>Bahan atau alat</th><th>Keterangan</th></tr></thead><tbody>
+<tr><td>Pelat besi</td><td>2 buah, 5×10 cm, tebal 1-2 mm, luas aktif ±40 cm², diamplas sebelum dipakai</td></tr>
+<tr><td>Adaptor</td><td>12 V 2 A, dengan penjepit buaya merah (+) dan hitam (−)</td></tr>
+<tr><td>Multimeter</td><td>Dipasang seri untuk membaca arus; tegangan dibaca di terminal</td></tr>
+<tr><td>Wadah reaktor</td><td>Wadah plastik bening, ±500 mL larutan</td></tr>
+<tr><td>Pewarna</td><td>Remazol Black B (Reactive Black 5), 100 mg/L</td></tr>
+<tr><td>Elektrolit</td><td>Na₂SO₄ 2 g/L</td></tr>
+<tr><td>Pengukur pH</td><td>Kertas pH dan pH meter</td></tr>
+<tr><td>Timbangan</td><td>Untuk menimbang pewarna dan elektrolit</td></tr>
+<tr><td>Aquadest</td><td>Pelarut dan blanko kalibrasi</td></tr>
+<tr><td>Pengukur warna</td><td>Ponsel, gelas bening berdasar rata, kertas HVS putih, dan lampu meja</td></tr>
+</tbody></table>
+
+</body></html>

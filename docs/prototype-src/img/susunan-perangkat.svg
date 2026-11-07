@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<rect width="1600" height="900" fill="#ffffff"/>
+<text x="30" y="44" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="bold" fill="#111" text-anchor="start">Susunan Perangkat SOBAT</text>
+<rect x="30" y="62" width="1540" height="200" rx="6" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<rect x="30" y="282" width="1540" height="130" rx="6" fill="#e4f3ec" stroke="#0f7a5f" stroke-width="2"/>
+<rect x="30" y="432" width="1540" height="456" rx="6" fill="#e6f0fb" stroke="#1f6aa5" stroke-width="2"/>
+<rect x="60" y="520" width="250" height="260" fill="#ffffff"/>
+<rect x="60" y="580" width="250" height="200" fill="#6b4fa0"/>
+<path d="M60,520 V780 H310 V520" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<rect x="70" y="498" width="230" height="12" fill="#555555"/>
+<circle cx="84" cy="504" r="3" fill="#ffffff"/>
+<circle cx="103" cy="504" r="3" fill="#ffffff"/>
+<circle cx="122" cy="504" r="3" fill="#ffffff"/>
+<circle cx="141" cy="504" r="3" fill="#ffffff"/>
+<circle cx="160" cy="504" r="3" fill="#ffffff"/>
+<circle cx="179" cy="504" r="3" fill="#ffffff"/>
+<circle cx="198" cy="504" r="3" fill="#ffffff"/>
+<circle cx="217" cy="504" r="3" fill="#ffffff"/>
+<circle cx="236" cy="504" r="3" fill="#ffffff"/>
+<circle cx="255" cy="504" r="3" fill="#ffffff"/>
+<circle cx="274" cy="504" r="3" fill="#ffffff"/>
+<circle cx="293" cy="504" r="3" fill="#ffffff"/>
+<line x1="80" y1="510" x2="80" y2="520" stroke="#555555" stroke-width="3"/>
+<line x1="290" y1="510" x2="290" y2="520" stroke="#555555" stroke-width="3"/>
+<text x="185" y="482" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111" text-anchor="middle">Saringan</text>
+<rect x="440" y="520" width="290" height="260" fill="#ffffff"/>
+<rect x="440" y="566" width="290" height="214" fill="#7d5a7a"/>
+<path d="M440,520 V780 H730 V520" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<rect x="440" y="566" width="290" height="11" fill="#e67e22"/>
+<rect x="510" y="538" width="20" height="214" fill="#555555"/>
+<text x="520" y="616" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">+</text>
+<rect x="640" y="538" width="20" height="214" fill="#555555"/>
+<text x="650" y="616" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">−</text>
+<circle cx="628" cy="700" r="3.5" fill="#ffffff"/>
+<circle cx="672" cy="668" r="3.5" fill="#ffffff"/>
+<circle cx="629" cy="636" r="3.5" fill="#ffffff"/>
+<circle cx="671" cy="604" r="3.5" fill="#ffffff"/>
+<circle cx="630" cy="584" r="3.5" fill="#ffffff"/>
+<circle cx="672" cy="726" r="3.5" fill="#ffffff"/>
+<rect x="960" y="520" width="290" height="260" fill="#ffffff"/>
+<rect x="960" y="566" width="290" height="179" fill="#f6e7a0"/>
+<rect x="960" y="745" width="290" height="35" fill="#8a5a2b"/>
+<path d="M960,520 V780 H1250 V520" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<rect x="310" y="719.0" width="130" height="22" fill="#ffffff" stroke="#555555" stroke-width="3"/>
+<path d="M318.0,730.0 L420.0,730.0" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="434.0,730.0 420.0,737.0 420.0,723.0" fill="#1f6aa5"/>
+<rect x="730" y="719.0" width="230" height="22" fill="#ffffff" stroke="#555555" stroke-width="3"/>
+<path d="M738.0,730.0 L940.0,730.0" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="954.0,730.0 940.0,737.0 940.0,723.0" fill="#1f6aa5"/>
+<polygon points="823,718 845,730 823,742" fill="#ffffff" stroke="#555555" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="867,718 845,730 867,742" fill="#ffffff" stroke="#555555" stroke-width="3" stroke-linejoin="round"/>
+<line x1="845" y1="730" x2="845" y2="700" stroke="#555555" stroke-width="3"/>
+<line x1="831" y1="700" x2="859" y2="700" stroke="#555555" stroke-width="4" stroke-linecap="round"/>
+<rect x="1250" y="592" width="46" height="16" fill="#ffffff" stroke="#555555" stroke-width="3"/>
+<rect x="1282" y="592" width="14" height="32" fill="#ffffff" stroke="#555555" stroke-width="3"/>
+<line x1="1270" y1="592" x2="1270" y2="574" stroke="#555555" stroke-width="3"/>
+<line x1="1258" y1="574" x2="1282" y2="574" stroke="#555555" stroke-width="4" stroke-linecap="round"/>
+<path d="M1289.0,632.0 L1289.0,662.0" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1289.0,676.0 1282.0,662.0 1296.0,662.0" fill="#1f6aa5"/>
+<text x="1312" y="660" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111" text-anchor="start">Air olahan</text>
+<line x1="1262" y1="764" x2="1232" y2="764" stroke="#111" stroke-width="2"/>
+<circle cx="1232" cy="764" r="4" fill="#ffffff"/>
+<text x="1272" y="770" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111" text-anchor="start">Lumpur besi (B3)</text>
+<rect x="790" y="590" width="150" height="80" rx="6" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="3"/>
+<text x="865.0" y="625.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Sensor</text>
+<text x="865.0" y="649.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">optik</text>
+<line x1="730" y1="612" x2="790" y2="612" stroke="#555555" stroke-width="3"/>
+<line x1="730" y1="648" x2="790" y2="648" stroke="#555555" stroke-width="3"/>
+<polygon points="789.0,612.0 777.0,606.0 777.0,618.0" fill="#1f6aa5"/>
+<polygon points="731.0,648.0 743.0,642.0 743.0,654.0" fill="#1f6aa5"/>
+<text x="185.0" y="816" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#111" text-anchor="middle">Limbah batik</text>
+<text x="585.0" y="816" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#111" text-anchor="middle">Reaktor EC 50 L</text>
+<text x="1105.0" y="816" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#111" text-anchor="middle">Pengendapan</text>
+<rect x="440" y="305" width="290" height="80" rx="6" fill="#ffffff" stroke="#c0392b" stroke-width="3"/>
+<text x="585.0" y="352.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111" text-anchor="middle">Catu daya terkendali</text>
+<rect x="790" y="305" width="200" height="80" rx="6" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="3"/>
+<text x="890.0" y="352.7" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">ESP32</text>
+<line x1="520" y1="385" x2="520" y2="538" stroke="#c0392b" stroke-width="4"/>
+<line x1="650" y1="385" x2="650" y2="538" stroke="#111111" stroke-width="4"/>
+<circle cx="520" cy="385" r="5" fill="#c0392b"/>
+<circle cx="520" cy="538" r="5" fill="#c0392b"/>
+<circle cx="650" cy="385" r="5" fill="#111111"/>
+<circle cx="650" cy="538" r="5" fill="#111111"/>
+<line x1="790" y1="345" x2="730" y2="345" stroke="#d9a55b" stroke-width="4" stroke-dasharray="10 6"/>
+<circle cx="790" cy="345" r="5" fill="#d9a55b"/>
+<circle cx="730" cy="345" r="5" fill="#d9a55b"/>
+<line x1="865" y1="385" x2="865" y2="590" stroke="#d9a55b" stroke-width="4" stroke-dasharray="10 6"/>
+<circle cx="865" cy="385" r="5" fill="#d9a55b"/>
+<circle cx="865" cy="590" r="5" fill="#d9a55b"/>
+<text x="125" y="92" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111" text-anchor="middle">Panel surya</text>
+<rect x="60" y="105" width="130" height="70" fill="#e6f0fb" stroke="#555555" stroke-width="3"/>
+<line x1="92.5" y1="105" x2="92.5" y2="175" stroke="#555555" stroke-width="2"/>
+<line x1="125" y1="105" x2="125" y2="175" stroke="#555555" stroke-width="2"/>
+<line x1="157.5" y1="105" x2="157.5" y2="175" stroke="#555555" stroke-width="2"/>
+<line x1="60" y1="128.3" x2="190" y2="128.3" stroke="#555555" stroke-width="2"/>
+<line x1="60" y1="151.7" x2="190" y2="151.7" stroke="#555555" stroke-width="2"/>
+<line x1="125" y1="175" x2="125" y2="196" stroke="#555555" stroke-width="3"/>
+<line x1="102" y1="196" x2="148" y2="196" stroke="#555555" stroke-width="3" stroke-linecap="round"/>
+<rect x="270" y="105" width="190" height="70" rx="6" fill="#ffffff" stroke="#c0392b" stroke-width="3"/>
+<text x="365.0" y="135.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111" text-anchor="middle">Pengatur</text>
+<text x="365.0" y="159.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111" text-anchor="middle">pengisian</text>
+<text x="600" y="92" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111" text-anchor="middle">Baterai</text>
+<rect x="540" y="112" width="120" height="63" fill="#ffffff" stroke="#555555" stroke-width="3"/>
+<rect x="566" y="102" width="16" height="10" fill="#555555"/>
+<rect x="618" y="102" width="16" height="10" fill="#555555"/>
+<path d="M190.0,140.0 L254.0,140.0" fill="none" stroke="#c0392b" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="270.0,140.0 254.0,147.5 254.0,132.5" fill="#c0392b"/>
+<path d="M460.0,140.0 L524.0,140.0" fill="none" stroke="#c0392b" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="540.0,140.0 524.0,147.5 524.0,132.5" fill="#c0392b"/>
+<path d="M600.0,175.0 L600.0,289.0" fill="none" stroke="#c0392b" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="600.0,305.0 592.5,289.0 607.5,289.0" fill="#c0392b"/>
+<text x="825" y="92" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111" text-anchor="middle">PLN (cadangan)</text>
+<line x1="825" y1="104" x2="825" y2="182" stroke="#555555" stroke-width="8"/>
+<line x1="790" y1="120" x2="860" y2="120" stroke="#555555" stroke-width="4" stroke-linecap="round"/>
+<line x1="801" y1="144" x2="849" y2="144" stroke="#555555" stroke-width="4" stroke-linecap="round"/>
+<circle cx="790" cy="120" r="5" fill="#ffffff" stroke="#555555" stroke-width="2.5"/>
+<circle cx="860" cy="120" r="5" fill="#ffffff" stroke="#555555" stroke-width="2.5"/>
+<circle cx="801" cy="144" r="5" fill="#ffffff" stroke="#555555" stroke-width="2.5"/>
+<circle cx="849" cy="144" r="5" fill="#ffffff" stroke="#555555" stroke-width="2.5"/>
+<path d="M825.0,182.0 L825.0,236.0 L700.0,236.0 L700.0,289.0" fill="none" stroke="#c0392b" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polygon points="700.0,305.0 692.5,289.0 707.5,289.0" fill="#c0392b"/>
+<rect x="1230" y="82" width="300" height="128" rx="8" fill="#ffffff" stroke="#0f7a5f" stroke-width="3"/>
+<text x="1250" y="110" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#111" text-anchor="start">Dashboard</text>
+<line x1="1252" y1="128" x2="1252" y2="194" stroke="#555555" stroke-width="2"/>
+<line x1="1252" y1="194" x2="1508" y2="194" stroke="#555555" stroke-width="2"/>
+<polyline points="1262,138 1320,150 1370,162 1420,170 1470,184 1500,188" fill="none" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="1380" y1="210" x2="1380" y2="236" stroke="#555555" stroke-width="3"/>
+<line x1="1346" y1="236" x2="1414" y2="236" stroke="#555555" stroke-width="4" stroke-linecap="round"/>
+<path d="M990.0,345.0 L1470.0,345.0 L1470.0,226.0" fill="none" stroke="#0a4f3e" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polygon points="1470.0,210.0 1477.5,226.0 1462.5,226.0" fill="#0a4f3e"/>
+<text x="1230" y="336" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#0a4f3e" text-anchor="middle">data batch</text>
+<text x="1556" y="876" font-family="Arial, Helvetica, sans-serif" font-size="16" font-style="italic" fill="#111" text-anchor="end">Gambar skematis, bukan produk jadi</text>
+</svg>

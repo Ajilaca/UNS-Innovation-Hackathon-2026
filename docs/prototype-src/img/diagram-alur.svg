@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<rect width="1600" height="900" fill="#ffffff"/>
+<text x="30" y="44" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="bold" fill="#111" text-anchor="start">Diagram Alur Sistem SOBAT</text>
+<rect x="30" y="58" width="1540" height="206" rx="6" fill="#e6f0fb" stroke="#1f6aa5" stroke-width="2"/>
+<text x="52" y="86" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#1f6aa5" text-anchor="start">Proses fisik</text>
+<text x="52" y="112" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#1f6aa5" text-anchor="start">(pengolahan limbah)</text>
+<rect x="50" y="129" width="190" height="86" rx="6" fill="#1f6aa5" stroke="#1f6aa5" stroke-width="3"/>
+<text x="145.0" y="167.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Limbah</text>
+<text x="145.0" y="191.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">batik</text>
+<rect x="285" y="129" width="190" height="86" rx="6" fill="#1f6aa5" stroke="#1f6aa5" stroke-width="3"/>
+<text x="380.0" y="167.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Saringan padatan</text>
+<text x="380.0" y="191.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">dan lilin</text>
+<rect x="520" y="129" width="190" height="86" rx="6" fill="#1f6aa5" stroke="#1f6aa5" stroke-width="3"/>
+<text x="615.0" y="167.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Penampung</text>
+<text x="615.0" y="191.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">(penyeragaman)</text>
+<rect x="755" y="129" width="190" height="86" rx="6" fill="#1f6aa5" stroke="#1f6aa5" stroke-width="3"/>
+<text x="850.0" y="155.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Reaktor</text>
+<text x="850.0" y="179.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">elektrokoagulasi</text>
+<text x="850.0" y="203.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">pelat besi</text>
+<rect x="990" y="129" width="190" height="86" rx="6" fill="#1f6aa5" stroke="#1f6aa5" stroke-width="3"/>
+<text x="1085.0" y="167.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Pengendapan</text>
+<text x="1085.0" y="191.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">flok</text>
+<path d="M240.0,172.0 L269.0,172.0" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="285.0,172.0 269.0,179.5 269.0,164.5" fill="#1f6aa5"/>
+<path d="M475.0,172.0 L504.0,172.0" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="520.0,172.0 504.0,179.5 504.0,164.5" fill="#1f6aa5"/>
+<path d="M710.0,172.0 L739.0,172.0" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="755.0,172.0 739.0,179.5 739.0,164.5" fill="#1f6aa5"/>
+<path d="M945.0,172.0 L974.0,172.0" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="990.0,172.0 974.0,179.5 974.0,164.5" fill="#1f6aa5"/>
+<rect x="1240" y="102" width="290" height="60" rx="6" fill="#1f6aa5" stroke="#1f6aa5" stroke-width="3"/>
+<text x="1385.0" y="127.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Air olahan</text>
+<text x="1385.0" y="151.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">(kandidat pakai ulang)</text>
+<rect x="1240" y="182" width="290" height="60" rx="6" fill="#8a5a2b" stroke="#8a5a2b" stroke-width="3"/>
+<text x="1385.0" y="207.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Lumpur besi hidroksida</text>
+<text x="1385.0" y="231.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">(limbah B3)</text>
+<path d="M1180.0,172.0 L1210.0,172.0 L1210.0,132.0 L1224.0,132.0" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1240.0,132.0 1224.0,139.5 1224.0,124.5" fill="#1f6aa5"/>
+<path d="M1210.0,172.0 L1210.0,212.0 L1224.0,212.0" fill="none" stroke="#1f6aa5" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1240.0,212.0 1224.0,219.5 1224.0,204.5" fill="#1f6aa5"/>
+<rect x="400" y="300" width="420" height="62" rx="6" fill="#ffffff" stroke="#c0392b" stroke-width="3"/>
+<text x="610.0" y="326.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111" text-anchor="middle">Catu daya reaktor</text>
+<text x="610.0" y="350.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#111" text-anchor="middle">(surya, baterai, PLN cadangan)</text>
+<rect x="30" y="384" width="1540" height="504" rx="6" fill="#e4f3ec" stroke="#0f7a5f" stroke-width="2"/>
+<text x="52" y="412" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#0f7a5f" text-anchor="start">Sistem kendali</text>
+<text x="52" y="438" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="bold" fill="#0f7a5f" text-anchor="start">(pemantauan, prediksi, dan operasi)</text>
+<rect x="1350" y="425" width="200" height="90" rx="6" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="3"/>
+<text x="1450.0" y="453.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Sensor arus,</text>
+<text x="1450.0" y="477.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">tegangan, dan</text>
+<text x="1450.0" y="501.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">warna optik</text>
+<rect x="1350" y="560" width="200" height="130" rx="6" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="3"/>
+<text x="1450.0" y="596.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Model AI:</text>
+<text x="1450.0" y="620.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">perkiraan muatan</text>
+<text x="1450.0" y="644.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">dan jadwal sesuai</text>
+<text x="1450.0" y="668.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">surya dan baterai</text>
+<rect x="1100" y="430" width="190" height="340" rx="6" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="3"/>
+<text x="1195.0" y="583.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">ESP32</text>
+<text x="1195.0" y="607.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">(hitung muatan</text>
+<text x="1195.0" y="631.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">q dan energi)</text>
+<path d="M1350.0,470.0 L1306.0,470.0" fill="none" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1290.0,470.0 1306.0,462.5 1306.0,477.5" fill="#0f7a5f"/>
+<path d="M1350.0,625.0 L1306.0,625.0" fill="none" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1290.0,625.0 1306.0,617.5 1306.0,632.5" fill="#0f7a5f"/>
+<polygon points="920,415.0 1040.0,490 920,565.0 800.0,490" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round"/>
+<text x="920" y="473.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Gangguan</text>
+<text x="920" y="497.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">sensor atau arus</text>
+<text x="920" y="521.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">berlebih?</text>
+<polygon points="920,585.0 1040.0,640 920,695.0 800.0,640" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round"/>
+<text x="920" y="635.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Warna sudah</text>
+<text x="920" y="659.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">sesuai target?</text>
+<path d="M1100.0,490.0 L1056.0,490.0" fill="none" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1040.0,490.0 1056.0,482.5 1056.0,497.5" fill="#0f7a5f"/>
+<path d="M1100.0,640.0 L1056.0,640.0" fill="none" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1040.0,640.0 1056.0,632.5 1056.0,647.5" fill="#0f7a5f"/>
+<rect x="560" y="460" width="180" height="60" rx="6" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="3"/>
+<text x="650.0" y="497.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Hentikan aman</text>
+<rect x="560" y="610" width="180" height="60" rx="6" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="3"/>
+<text x="650.0" y="647.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Hentikan arus</text>
+<path d="M800.0,490.0 L756.0,490.0" fill="none" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="740.0,490.0 756.0,482.5 756.0,497.5" fill="#0f7a5f"/>
+<text x="770.0" y="480" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#0a4f3e" text-anchor="middle">Ya</text>
+<path d="M800.0,640.0 L756.0,640.0" fill="none" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="740.0,640.0 756.0,632.5 756.0,647.5" fill="#0f7a5f"/>
+<text x="770.0" y="630" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#0a4f3e" text-anchor="middle">Ya</text>
+<rect x="830" y="726" width="180" height="44" rx="6" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="3"/>
+<text x="920.0" y="755.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Lanjutkan</text>
+<path d="M920.0,695.0 L920.0,710.0" fill="none" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="920.0,726.0 912.5,710.0 927.5,710.0" fill="#0f7a5f"/>
+<text x="932" y="717" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" fill="#0a4f3e" text-anchor="start">Tidak</text>
+<path d="M1010.0,748.0 L1084.0,748.0" fill="none" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="1100.0,748.0 1084.0,755.5 1084.0,740.5" fill="#0f7a5f"/>
+<rect x="60" y="590" width="380" height="100" rx="6" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="3"/>
+<text x="250.0" y="623.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">Dashboard</text>
+<text x="250.0" y="647.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">(data batch: warna, arus, tegangan,</text>
+<text x="250.0" y="671.0" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#fff" text-anchor="middle">energi, durasi, status)</text>
+<path d="M1150.0,770.0 L1150.0,835.0 L250.0,835.0 L250.0,706.0" fill="none" stroke="#0f7a5f" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="250.0,690.0 257.5,706.0 242.5,706.0" fill="#0f7a5f"/>
+<path d="M780.0,300.0 L780.0,231.0" fill="none" stroke="#c0392b" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="780.0,215.0 787.5,231.0 772.5,231.0" fill="#c0392b"/>
+<path d="M920.0,215.0 L920.0,284.0 L1445.0,284.0 L1445.0,409.0" fill="none" stroke="#0a4f3e" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polygon points="1445.0,425.0 1437.5,409.0 1452.5,409.0" fill="#0a4f3e"/>
+<text x="1435" y="360" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#0a4f3e" text-anchor="end">pengukuran</text>
+<path d="M1195.0,430.0 L1195.0,331.0 L836.0,331.0" fill="none" stroke="#0a4f3e" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polygon points="820.0,331.0 836.0,323.5 836.0,338.5" fill="#0a4f3e"/>
+<text x="1000" y="322" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#0a4f3e" text-anchor="middle">perintah arus</text>
+<path d="M560.0,640.0 L520.0,640.0 L520.0,378.0" fill="none" stroke="#0a4f3e" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polygon points="520.0,362.0 527.5,378.0 512.5,378.0" fill="#0a4f3e"/>
+<path d="M650.0,460.0 L650.0,378.0" fill="none" stroke="#0a4f3e" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 7"/>
+<polygon points="650.0,362.0 657.5,378.0 642.5,378.0" fill="#0a4f3e"/>
+<rect x="1200" y="800" width="350" height="80" rx="6" fill="#ffffff" stroke="#555555" stroke-width="2"/>
+<rect x="1214" y="810" width="36" height="16" rx="3" fill="#1f6aa5" stroke="#1f6aa5" stroke-width="1"/>
+<text x="1262" y="823" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#111" text-anchor="start">kotak biru = proses fisik</text>
+<rect x="1214" y="834" width="36" height="16" rx="3" fill="#0f7a5f" stroke="#0f7a5f" stroke-width="1"/>
+<text x="1262" y="847" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#111" text-anchor="start">kotak hijau = kendali dan data</text>
+<path d="M1214.0,866.0 L1250.0,866.0" fill="none" stroke="#0a4f3e" stroke-width="3" stroke-linejoin="round" stroke-dasharray="8 5"/>
+<text x="1262" y="871" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#111" text-anchor="start">garis putus-putus = sinyal antarsistem</text>
+</svg>
